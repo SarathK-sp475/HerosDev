@@ -330,7 +330,7 @@ export class StoreComponent implements OnInit {
       this.ascendingChecked = false;
       this.descendingChecked = false;
   
-      // Reset radio buttons
+      //Reset radio buttons
       const ascendingRadio = document.getElementById('ascendingRadio') as HTMLInputElement;
       const descendingRadio = document.getElementById('descendingRadio') as HTMLInputElement;
   
@@ -346,7 +346,7 @@ export class StoreComponent implements OnInit {
         this.updatePagination(); //pagination
         this.calculateIndexes();
       });
-    }// Filtering end
+    } //Filtering end
 
 
 }
