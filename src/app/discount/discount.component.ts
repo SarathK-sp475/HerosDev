@@ -283,7 +283,7 @@ closeModal(modalService:NgbModalRef) {
 
   //Sorting using span image
   click: any = true
-  sortOrder: number = 1
+  sortOrder: number = -1
   toggleSort(sortBy: string) {
 
     this.sortOrder = this.click ? -1 : 1;
@@ -295,7 +295,7 @@ closeModal(modalService:NgbModalRef) {
 
 
   //Filtering the data using toggledown
-  sortBy: string  = 'name';
+  sortBy: string  = '';
   fromDateModel: NgbDateStruct | null = null;
   toDateModel: NgbDateStruct | null = null;
 

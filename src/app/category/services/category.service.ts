@@ -13,12 +13,12 @@ export class CategoryService {
   }
 
   //pagination
-  getCategory(currentPage: number, pageSize: number, sortOrder: number = 1, sortBy: string = 'name') {
+  getCategory(currentPage: number, pageSize: number, sortOrder: number = -1, sortBy: string = 'createdAt') {
     return this.http.get<any>(`${this.config.apiEndPoint}/category?page=${currentPage}&limit=${pageSize}&sortOrder=${sortOrder}&sortBy=${sortBy}`);
   }//pagination
 
   ///////////////////
-  getCategoryFilterDate(currentPage: number, pageSize: number, sortOrder: number = 1, sortBy: string = 'name', fromDate: string , toDate: string ) {
+  getCategoryFilterDate(currentPage: number, pageSize: number, sortOrder: number = -1, sortBy: string = 'name', fromDate: string , toDate: string ) {
     return this.http.get<any>(`${this.config.apiEndPoint}/category?page=${currentPage}&limit=${pageSize}&sortOrder=${sortOrder}&sortBy=${sortBy}&fromDate=${fromDate}&toDate=${toDate}`);
   }//////////////////
 

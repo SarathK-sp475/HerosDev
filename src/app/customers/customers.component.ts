@@ -202,9 +202,9 @@ export class CustomersComponent implements OnInit {
 
   //Sorting using span image
   click: any = true
-  sortOrder: number = 1
+  sortOrder: number = -1
   toggleSort(sortBy: string) {
-    this.sortOrder = this.click ? -1 : 1;
+    this.sortOrder = this.click ? 1 : -1;
     this.click = !this.click;
     this.customerService.getCustomers(this.currentPage, this.pageSize, this.sortOrder, sortBy).subscribe((data) => {
       this.customers = data.data;

@@ -13,11 +13,11 @@ export class CustomersService {
     console.log(this.config.apiEndPoint)
   }
 
-  getCustomers(currentPage: number, pageSize: number, sortOrder: number = 1, sortBy: string = 'firstName') {
+  getCustomers(currentPage: number, pageSize: number, sortOrder: number = -1, sortBy: string = 'firstName') {
     return this.http.get<any>(`${this.config.apiEndPoint}/user?page=${currentPage}&limit=${pageSize}&sortOrder=${sortOrder}&sortBy=${sortBy}`);
   }
 
-  getCustomerFilterDate(currentPage: number, pageSize: number, sortOrder: number = 1, sortBy: string = 'firstName', fromDate: string , toDate: string, status: string ) {
+  getCustomerFilterDate(currentPage: number, pageSize: number, sortOrder: number = -1, sortBy: string = 'firstName', fromDate: string , toDate: string, status: string ) {
     return this.http.get<any>(`${this.config.apiEndPoint}/user?page=${currentPage}&limit=${pageSize}&sortOrder=${sortOrder}&sortBy=${sortBy}&fromDate=${fromDate}&toDate=${toDate}&filter[status]=${status}`);
   }
 

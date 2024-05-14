@@ -12,11 +12,11 @@ export class DiscountService {
     console.log(this.config.apiEndPoint)
   }
 
-  getDiscount(currentPage:number,pageSize:number, sortOrder: number = 1, sortBy: string = 'name') {
+  getDiscount(currentPage:number,pageSize:number, sortOrder: number = -1, sortBy: string = 'createdAt') {
     return this.http.get<any>(`${this.config.apiEndPoint}/discount?page=${currentPage}&limit=${pageSize}&sortOrder=${sortOrder}&sortBy=${sortBy}`);
   }
 
-  getDiscountFilterDate(currentPage: number, pageSize: number, sortOrder: number = 1, sortBy: string = 'name', fromDate: string , toDate: string ) {
+  getDiscountFilterDate(currentPage: number, pageSize: number, sortOrder: number = -1, sortBy: string = 'name', fromDate: string , toDate: string ) {
     return this.http.get<any>(`${this.config.apiEndPoint}/discount?page=${currentPage}&limit=${pageSize}&sortOrder=${sortOrder}&sortBy=${sortBy}&fromDate=${fromDate}&toDate=${toDate}`);
   }
 

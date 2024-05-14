@@ -280,10 +280,10 @@ export class StoreComponent implements OnInit {
 
   //Sorting using span image
   click: any = true
-  sortOrder: number = 1
+  sortOrder: number = -1
   toggleSort(sortBy: string) {
 
-    this.sortOrder = this.click ? -1 : 1;
+    this.sortOrder = this.click ? 1 : -1;
     this.click = !this.click;
     this.storeService.getStore(this.currentPage, this.pageSize, this.sortOrder, sortBy).subscribe((data) => {
       this.store = data.data;
@@ -297,7 +297,7 @@ export class StoreComponent implements OnInit {
     toDateModel: NgbDateStruct | null = null;
   
     toggleAscDesc(sortBy: string) {
-      this.sortOrder = this.sortBy === sortBy ? -this.sortOrder : this.sortOrder;
+      this.sortOrder = this.sortBy === sortBy ? this.sortOrder : -this.sortOrder;
       this.sortBy = sortBy;
     }
   

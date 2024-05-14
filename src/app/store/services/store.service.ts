@@ -12,7 +12,7 @@ export class StoreService {
     console.log(this.config.apiEndPoint)
   }
 
-  getStore(currentPage:number,pageSize:number, sortOrder: number = 1, sortBy: string = 'name') {
+  getStore(currentPage:number,pageSize:number, sortOrder: number = -1, sortBy: string = 'createdAt') {
     return this.http.get<any>(`${this.config.apiEndPoint}/store?page=${currentPage}&limit=${pageSize}&sortOrder=${sortOrder}&sortBy=${sortBy}`)
   }
 

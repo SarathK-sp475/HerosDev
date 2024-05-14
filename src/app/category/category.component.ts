@@ -259,9 +259,9 @@ export class CategoryComponent implements OnInit {
 
   //Sorting using span image
   click: any = true
-  sortOrder: number = 1
+  sortOrder: number = -1
   toggleSort(sortBy: string) {
-    this.sortOrder = this.click ? -1 : 1;
+    this.sortOrder = this.click ? 1 : -1;
     this.click = !this.click;
     this.categoryService.getCategory(this.currentPage, this.pageSize, this.sortOrder, sortBy).subscribe((data) => {
       this.category = data.data.data;
@@ -270,7 +270,7 @@ export class CategoryComponent implements OnInit {
 
 
   //Filtering the data using toggledown
-  sortBy: string  = 'name';
+  sortBy: string  = '';
   fromDateModel: NgbDateStruct | null = null;
   toDateModel: NgbDateStruct | null = null;
 
