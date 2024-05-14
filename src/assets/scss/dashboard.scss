@@ -1,0 +1,86 @@
+@import "../../assets/scss/partials/partials";
+
+.dashboard-wrp{
+    display: flex;
+    width: 100%;
+    .page-cont-wrp{
+        max-width: calc(100% - 300px);
+        display: flex;
+        flex-direction: column;
+        @media($sm-1481){
+            max-width: calc(100% - 266px);   
+        }
+        @media($sm-1281){
+            max-width: calc(100% - 220px);  
+        }
+        @media($sm-991){
+            max-width: 100%;
+            padding-left: 72px;
+        }
+        flex: 1;
+        .page-body{
+            padding: 0 14px;
+            max-height: calc(100vh - 60px);
+            overflow: hidden;
+            @media ($sm-1199){
+                overflow: auto;
+            }
+        }
+    }
+    .top-sec{
+        padding: 25px 10px;
+        .heading{
+            font: normal normal 600 24px/1.4 'Poppins';
+            letter-spacing: .1px;
+            color:$colorPrimary;
+        }
+    }
+}
+
+.no-data-wrp{
+   display: flex;
+   border: 1px solid $formBorder;
+   border-radius: 16px;
+   align-items: center;
+   justify-content: center;
+   padding: 30px;
+   height: calc(100vh - 165px);
+   @media ($sm-1481){
+    height: calc(100vh - 200px);
+   }
+   @media ($sm-579){
+    height: 200px;
+   }
+   .content-wrp{
+    max-width: 200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   }
+   .title-txt{
+    font-size: 24px;
+    color: $txtGray;
+    @media ($sm-1679){
+        font-size: 20px;
+    }
+    @media ($sm-1481){
+        font-size: 18px;
+    }
+    @media ($sm-1441){
+        font-size: 16px;
+    }
+   }
+   .img-wrp{
+    margin-bottom: 16px;
+    img{
+        @media ($sm-1679){
+            max-width: 90px;
+        }
+        @media ($sm-991){
+        max-width: 50px;
+        }
+    }
+   }
+}

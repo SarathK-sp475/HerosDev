@@ -1,0 +1,413 @@
+@import "../../assets/scss/partials/partials";
+
+
+.login-wrp{
+    width: 100%;
+    display: flex;
+    min-height: 100vh;
+    .inner-blks{
+        width: 50%;
+        display: flex;
+        flex: 1;
+        padding:60px 0;
+        position: relative;
+        align-items: center;
+        @media ($sm-1679){
+            max-height: 100vh;
+            padding:50px 0;
+        }
+        @media ($sm-1441){
+            padding:20px 0;
+        }
+        @media (max-height: 600px){
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        @media ($sm-991){
+            width: 100%;
+            padding: 40px 0;
+        }
+        @media ($sm-767){
+            width: 100%;
+            padding: 40px 20px;
+            align-items: center;
+            height: 100vh;
+        }
+        &.bg-left{
+            background: url('../../assets/img/login-left-bg.webp') no-repeat;
+            background-size: cover;
+            background-position: center;
+            @media ($sm-991){
+                display: none;
+            }
+            .inner-wrp{
+                max-width: 400px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                margin-left: 174px;
+                margin-right: 40px;
+                max-height: 840px;
+                justify-content: center;
+                @media ($sm-1679){
+                    margin-left: 140px;
+                    max-width: 340px;
+                }
+                @media ($sm-1481){
+                    margin-left: 120px;
+                }
+                @media ($sm-1441){
+                    margin-left: 100px;
+                }
+                .logo{
+                    max-width: 184px;
+                    img{
+                        max-width: 100%;
+                    }
+                    @media ($sm-1679){
+                        max-width: 150px;
+                    }
+                }
+                .desc-area{
+                    display: flex;
+                    flex-direction: column;
+                    // margin-top: auto;
+                    // margin-bottom: 120px;
+                    // padding-top: 40px;
+                    // @media ($sm-1679){
+                    //     margin-bottom: 60px;
+                    // }
+                    // @media ($sm-1481){
+                    //     margin-bottom: 40px;
+                    // }
+                    .title{
+                        font: normal normal 500 39px/59px Poppins;
+                        color: $white;
+                        text-transform: capitalize;
+                        margin-bottom: 24px;
+                        @media ($sm-1679){
+                            font: normal normal 600 30px/44px Poppins;
+                            margin-bottom: 20px;
+                        }
+                        @media ($sm-1481){
+                            font: normal normal 600 28px/38px Poppins;
+                            margin-bottom: 20px;
+                        }
+                        @media ($sm-1441){
+                            font: normal normal 600 26px/36px Poppins;
+                            margin-bottom: 20px;
+                        }
+                        @media ($sm-1281){
+                            font: normal normal 600 25px/35px Poppins;
+                            margin-bottom: 20px;
+                        }
+                    }
+                    .txt-blk{
+                        font: normal normal 300 15px/26px Poppins;
+                        color: $white;
+                        text-align: left;
+                        margin-top: auto;
+                        max-width: 359px;
+                        @media ($sm-1679){
+                            font-size: 14px;
+                            line-height: 22px;
+                        }
+
+                    }
+                }
+            }
+        }
+        &:not(.bg-left){
+            justify-content: center;
+        }
+        .login{
+            border: 1px solid $formBorder;
+            border-radius: 56px;
+            max-width: 595px;
+            width: 100%;
+            padding: 109px 105px;
+            height: 100%;
+            // padding: 59px 80px;
+            background-color: $formBgLogin;
+            margin: auto;
+            max-height: 840px;
+            @media (max-width:1720px){
+                padding: 60px 90px;
+            }
+            @media ($sm-1679){
+                max-width: 475px;
+                padding: 63px 62px;
+                max-height: 640px;
+            }
+            @media (max-height: 600px){
+                padding-top: 10px;
+                padding-bottom: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                max-height: unset;
+            }
+            @media ($sm-991){
+                padding: 55px 45px;
+                height: auto;
+                border-radius: 23px;
+            }
+            @media ($sm-579){
+                padding: 55px 30px;
+                margin: 0 auto;
+            }
+
+            .logo{
+                max-width: 149px;
+                margin-bottom: 30px;
+                @media (max-width:1720px){
+                    max-width: 129px;
+                    margin-bottom: 25px;
+                }
+                @media ($sm-1679){
+                    margin-bottom: 25px;
+                    max-width: 129px;
+                }
+                img{
+                    max-width: 100%;
+                }
+            }
+            
+            .form-title{
+                font-size: 28px;
+                color: $colorPrimary;
+                font-weight: 600;
+                margin-bottom: 9px;
+                @media ($sm-1679){
+                    font-size: 24px;
+                }
+                @media ($sm-1481){
+                    font-size: 22px;
+                }
+                @media ($sm-1281){
+                    font-size: 20px;
+                }
+                @media ($sm-991){
+                    font-size: 18px;
+                }
+            }
+            .loginDesc{
+                margin-bottom: 40px;
+                font: normal normal normal 13px/22px Poppins;
+                @media ($sm-1679){
+                    font-size: 12px;
+                    line-height: 20px;
+                    margin-bottom: 20px;
+                }
+            }
+        
+            .inp-wrp{
+                margin-bottom: 30px;
+                position: relative;
+                @media ($sm-1679){
+                    margin-bottom: 20px;
+                }
+                @media ($sm-1481){
+                    // margin-bottom: 18px;
+                }
+                @media($sm-991){
+                    margin-top: 10px !important;
+                }
+                .eye-ico{
+                    position: relative;
+                }
+                .inp_ico{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 60px;
+                    @media ($sm-1679){
+                        top: 3px;
+                    }
+                    @media ($sm-991){
+                        width: 40px;
+                        left: 10px;
+                    }
+                     
+                     
+                }
+                .form-control{
+                    padding: 20px 23px;
+                    padding-left: 60px;
+                    border: 1px solid $formBorder;
+                    border-radius: 16px;
+                    
+                    color: $txtGray;
+                    box-shadow: none ;
+                    background-position: 20px center;
+                    background-size: 20px;
+                    @media ($sm-1679){
+                        padding: 12px 24px;
+                        padding-left: 55px;
+                        background-size: 16px;
+                        border-radius: 12px;
+                    }
+                    @media ($sm-1481){
+                        padding: 10px 24px;
+                        padding-left: 50px;
+                        background-size: 13px;
+                        border-radius: 10px;
+                    }
+                    // &.username{
+                    //     background:  url(../../assets/img/icon-mail.svg) no-repeat;
+                    //     background-color: #FCFEFE;
+                    // }
+                    // &.passw{
+                    //     background:  url(../../assets/img/icon-lock.svg) no-repeat;
+                    //     background-color: #FCFEFE;
+                    // }
+                    &::placeholder{
+                        color: $txtGray;
+                        font-size: 15px;
+                        @media($sm-1679){
+                            font-size: 13px;
+                        }
+                    }
+                }
+                .btn-login{
+                    width: 100%;
+                    font-weight: 500;
+                    padding: 17px;
+                    border-radius: 28px;
+                    border-color: $colorPrimary;
+                    font-size: 15px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    @media($sm-1679){
+                        padding: 15px;
+                        font-size: 12px;
+                    }
+                    @media($sm-991){
+                        padding: 10px;
+                    }
+                    &.btn-outline{
+                        border: 1px solid $btnOutline;
+                        color: #35475E;
+                        padding: 11px;
+                        @media ($sm-991){
+                            padding: 7px;
+                        }
+                    }
+                }
+                &.reset-flx{
+                    .btn{
+                        &.btn-login{
+                            margin-left: 15px;
+                            border-radius: 16px;
+                            @media($sm-1679){
+                                padding: 15px 18px;
+                            }
+                            @media($sm-991){
+                                padding: 12px;
+                                border-radius: 9px;
+                            }
+                        }
+                        &.btn-outline{
+                            font-weight: 600;
+                            @media($sm-1679){
+                                padding: 15px 18px;
+                            }
+                            @media($sm-991){
+                                padding: 12px;
+                                border-radius: 9px;
+                            }
+                        }
+                    }
+                }
+                
+            }
+            .backtologin{
+                font: normal normal normal 16px/25px Poppins;
+                letter-spacing: 0px;
+                color: $colorPrimary;
+                text-decoration:underline;
+                text-transform: capitalize;
+                display: block;
+                text-align: center;
+                margin-top: 50px;
+                @media ($sm-1679){
+                    margin-top: 40px;
+                }
+                @media ($sm-1481){
+                    margin-top: 35px;
+                }
+                @media ($sm-1441){
+                    margin-top: 30px;
+                }
+                span{
+                    margin-right: 17px;
+                    display: inline-block;
+                }
+            }
+        
+            .forgotpw{
+                display: inline-block;
+                color: $colorPrimary;
+                font-style: italic;
+                font-size: 14px;
+                margin-bottom: 40px;
+                @media($sm-1679){
+                    margin-bottom:25px;
+                }
+                @media($sm-991){
+                    margin-bottom: 0px !important;
+                }
+                &.backto{
+                    text-decoration: none;
+                    .txt{
+                        text-decoration: underline;
+                    }
+                }
+            }
+            &.forget{
+                .logo{
+                    margin-bottom: 120px;
+                    @media ($sm-1679){
+                        margin-bottom: 100px;
+                    }
+                    @media ($sm-1481){
+                        margin-bottom: 70px;
+                    }
+                    @media ($sm-1441){
+                        margin-bottom: 60px;
+                    }
+                    @media ($sm-1281){
+                        margin-bottom: 50px;
+                    }
+                    @media ($sm-1199){
+                        margin-bottom: 40px;
+                    }
+                    @media ($sm-991){
+                        margin-bottom: 30px;
+                    }
+                }
+            }
+        }
+        button.eye-icon {
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            background: none;
+            border: none
+        }
+        .login-form-error {
+            position: absolute;
+            text-align: center;
+            left: 0;
+            right: 0;
+            bottom: 50px;
+        }
+    }
+}

@@ -1,0 +1,348 @@
+@import "../../assets/scss/partials/partials";
+.dashboard-header{
+    background: $sidenavBg;
+    padding: 1px;
+
+    .actn-col{
+        display: flex;
+        justify-content: end;
+        .navbar-nav{
+            flex-direction: row;
+        }
+        
+    .navbar-nav 
+    {
+        .dropdown-menu{
+            background-color: #fff;
+            box-shadow: 3px 13px 21px #00000050;
+           
+            padding: 24px 22px;
+            border: 1px solid #fff;
+            border-radius: 8px;
+            @media($sm-1679){
+                padding: 24px 18px;
+            }
+            @media($sm-1481){
+                padding: 20px 16px;
+            }
+            @media($sm-1441){
+                padding: 15px 16px;
+            }
+            li{
+                width: 100vw;
+                max-width: 260px;
+            }
+        }
+        li{
+            
+            @media($sm-1679){
+                width: auto;
+            }
+            .dropdown-divider{
+                border-bottom: 1px solid $formBorder;
+                border-top: none;
+                margin: 12px 0px;
+                opacity: 0.8;
+                @media($sm-1679){
+                    margin: 12px 0px;
+                }
+
+                @media($sm-991){
+                    margin: 8px 0px;
+                }
+
+            }
+            &.nav-item {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+               
+                margin: 0px 5px;
+                &.user-drop-dwn{
+                    padding-right: 10px;
+                    margin-left: 22px;
+                    // border-left: 1px solid #E0EAEB;
+                    @media ($sm-991){
+                        margin-left: 0px;
+                    }
+                    .dropdown-toggle::after {
+                        color: $dark;
+                        margin-left: 10px;
+                    }
+
+                    .img,.ico{
+                        margin-right: 15px;
+                        width: 16px;
+                        height: 19px;
+                        @media ($sm-1679){
+                            width: 15px;
+                            height: 19px;
+                        }
+                        @media ($sm-1481){
+                            width: 14px;
+                            height: 18px;
+                        }
+                        @media ($sm-1199){
+                            width: 12px;
+                            height: 18px;
+                        }
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+
+                    }
+                    .dropdown-item.active, .dropdown-item:active{
+                        background-color: transparent;
+                        color: $colorPrimary;
+                    }
+                    .dropdown-item:focus, .dropdown-item:hover {
+                        color: $colorPrimary;
+                        background-color: transparent;
+                    }
+                    .dropdown-item{
+                        &:hover{
+                            cursor: pointer;
+                            color: $colorPrimary;
+                            
+                        }
+                    }
+                  
+                    a{
+                        display: flex;
+                      
+                        color: #646464;
+                        letter-spacing: 0.07px;
+                        font-size: 17px;
+
+                        
+                        @media($sm-1679){
+                            font-size: 15px;
+                        }
+                        @media($sm-1481){
+                            font-size: 14px;
+                        }
+                        @media($sm-1281){
+                            font-size: 13px;
+                        }
+                        @media($sm-1199){
+                            font-size: 12px;
+                        }
+                        &.nav-link{
+                            align-items: center;
+                        }
+                        &.active{
+                            background-color: transparent;
+                        }
+                        .user-detai{
+                            display: flex;
+                            flex-direction: column;
+
+                            @media($sm-991){
+                                display: none; 
+                            }
+                        }
+                    }
+                }
+                            
+                .usr-img {
+                    width: 36px;
+                    height: 36px;
+                    margin-right: 10px;
+                    margin-left: 22px;
+                    @media($sm-991){
+                        width: 26px;
+                        height: 26px;
+                    }
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 100px;
+                    }
+                }
+   
+            }
+            a{
+                &.user-drop {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 13px 0;
+                    position: relative;
+                    &.dropdown-toggle{
+                        &::after{
+                            display: none;
+                        }
+                    }
+                    .count{
+                        background-color: #AE4069;
+                        border-radius: 50%;
+                        width: 14px;
+                        height: 14px;
+                        position: absolute;
+                        right: 0px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: $white;
+                        padding: 5px;
+                        font-size: 11px;
+                        position: absolute;
+                        top: 8px;
+                        right: 0px;
+                        border: 1px solid $white;
+                    }
+                    // border:1px solid $borderLightAlt;
+                    border-radius: 100px;
+
+                    @media($sm-991){
+                        padding: 5px;
+                    }
+                    &:hover{
+                        
+                        cursor: pointer;
+                    }
+                 
+                  img{
+                    @media ($sm-1481){
+                    width: 17px;
+                    height: 17px;
+                    }
+                    @media($sm-991){
+                        width: 16px;
+                        height: 16px;
+                    }
+                  }
+                }
+            }
+            .user-name{
+             
+                letter-spacing: 0.07px;
+                font-size: 14px;
+                line-height: 21px;
+                color: $dark;
+                font-weight: 500;
+            }
+            .user-position{
+                font: normal normal normal 12px/18px Poppins;
+                letter-spacing: 0.06px;
+                color: #80858C;
+            }
+        }
+    }
+    
+ 
+
+    }
+}
+
+.two-btn.logout-btn{
+    margin-top: 30px;
+    justify-content: center;
+    @media ($sm-991){
+        margin-top: 10px;
+    }
+}
+.change-pass{
+     .modal-content{
+        margin: 100px auto;
+     }
+}
+
+.dark-theme{
+    .dashboard-header{
+        background-color: #041114;
+        .actn-col{
+            .navbar-nav{
+                li{
+                    &.nav-item.user-drop-dwn{
+                        border-left-color: #205662;
+                    }
+                    a.user-drop{
+                        // border-color: $colorPrimaryAlt;
+                    }
+
+                    .user-name{
+                        color: #ffffff;
+                    }
+
+                    .dropdown-divider{
+                        border-color: transparent;
+                    }
+                }
+
+                .dropdown-menu{
+                    background-color: #010F10;
+                    box-shadow: 3px 13px 21px rgba(0, 0, 0, 0.314);
+                    border: 1px solid transparent;
+                    .dropdown-item{
+                        .name, .txt{
+                            color: #FFFFFF;
+                        }
+                    }
+                }
+            }
+        } 
+    }
+}
+
+ul{
+    &.dropdown-menu{
+        &.notify-list{
+            width: 338px;
+            padding: 24px 31px!important;
+            &::before{
+                content: "";
+                width: 0; 
+                height: 0; 
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-bottom: 6px solid $white;
+                position: absolute;
+                right: 20px;
+                top: -7px;
+            }
+            
+            li{
+                width: 100% !important;
+                max-width: unset !important;
+                .dropdown-divider{
+                    border-bottom: 1px solid $formBorder !important;
+                }
+            }
+            .dropdown-item{
+                display: flex;
+                font: normal normal normal 13px/20px Poppins;
+                color: $dark;
+                padding-left: 0px !important;
+                
+                .prof-pic{
+                    width: 36px;
+                    height: 36px;
+                    overflow: hidden;
+                    border-radius: 50%;
+                    flex-shrink: 0;
+                    margin-right: 12px;
+                    img{
+                        max-width: 100%;
+                    }
+                }
+                .info{
+                    display: flex;
+                    flex-wrap: wrap;
+                    .name{
+                        display: block;
+                        span{
+                            font-weight: 500;
+                        }
+                    }
+                    .date{
+                        font: normal normal normal 12px/18px $font-primary;
+                        color: $txtGray;
+                    }
+                }
+            }
+        }
+    }
+}

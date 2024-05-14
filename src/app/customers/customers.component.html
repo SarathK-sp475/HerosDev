@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+        integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+
+<body>
+    <div class="dashboard-wrp">
+        <div class="page-cont-wrp">
+            <div class="page-body">
+                <div class="prospect">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="top-sec d-flex">
+                                <div class="col-lg-3 col-12 ">
+                                    <div class="heading left-sec">Customers</div>
+                                </div>
+                                <div class=" col-lg-9 col-12">
+                                    <div class="right-sec">
+                                        <div class="search-group mx-2">
+                                            <div class="input-group">
+                                                <span class="input-group-text"><img
+                                                        src="../../assets/img/search-normal.svg" alt="sch"></span>
+                                                <input type="text" class="form-control" placeholder="Search...">
+                                                <!-- (input)="search($event)" -->
+                                            </div>
+                                        </div>
+                                        <div class="filter-items">
+
+                                            <div ngbDropdown class="filter dropdown mx-2" #myDrop="ngbDropdown">
+                                                <button class="btn-common dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                                   data-bs-auto-close="outside" aria-expanded="false" ngbDropdownToggle>
+                                                   <span><img src="../../assets/img/filter.svg" alt="filter"></span><span>Filter</span>
+                                                </button>
+                                                <div ngbDropdownMenu class="dropdown-menu filter-drp dropdown-menu-end">
+                                                   <h3 class="filt-title">
+                                                      Filter By
+                                                   </h3>
+            
+                                                   <form class="form">
+                                                      <div class="row inline-btm">
+                                                         <div class="col-auto">
+                                                            <label for="">Sort By :</label>
+                                                         </div>
+                                                         <div class="col-auto">
+                                                            <input type="radio" id="ascendingRadio" name="radio-group1"  (change)="toggleAscDesc('firstName')" [checked]="sortBy === 'ascendingChecked'">
+                                                            <label for="ascendingRadio">Ascending</label>
+                                                         </div>
+                                                         <div class="col-auto">
+                                                            <input type="radio" id="descendingRadio" name="radio-group1"  (change)="toggleAscDesc('firstName')" [checked]="sortBy === 'descendingChecked'">
+                                                            <label for="descendingRadio">Descending</label>
+                                                         </div>
+                                                      </div>
+                                                      <div class="row inline-btm">
+                                                        <div class="col-auto">
+                                                           <label for="">Sort By Status:</label>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                           <input type="radio" id="statusRadio1" name="radio-group2"  (change)="toggleByStatus('1')" [checked]="sortBy === 'ascendingChecked'">
+                                                           <label for="statusRadio1">Active</label>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                           <input type="radio" id="statusRadio2" name="radio-group2"  (change)="toggleByStatus('2')" [checked]="sortBy === 'descendingChecked'">
+                                                           <label for="statusRadio2">Blocked</label>
+                                                        </div>
+                                                     </div>
+                                                      <div class="row date-field">
+                                                         <div class="col-12">
+                                                            <label for="">Created Date :</label>
+                                                         </div>
+                                                         <div class="col-auto">
+                                                            <div class="inp-wrp clndr">
+                                                                <input type="text" class="form-control"
+                                                                placeholder="From Date"
+                                                                name="fromDateModel"
+                                                                ngbDatepicker
+                                                                #fromDate="ngbDatepicker"
+                                                                [(ngModel)]="fromDateModel">
+                                                                <span><img src="../../assets/img/Calander.svg" (click)="fromDate.toggle()" type="button"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <div class="inp-wrp clndr">
+                                                                <input type="text" class="form-control"
+                                                                name="toDateModel"
+                                                                placeholder="End Date"
+                                                                ngbDatepicker
+                                                                #toDate="ngbDatepicker"
+                                                                [(ngModel)]="toDateModel">
+                                                                <span><img src="../../assets/img/Calander.svg" (click)="toDate.toggle()" type="button"></span>
+                                                            </div>
+                                                        </div>
+            
+                                                      <!-- <div>From Date Model: {{ fromDateModel | json }}</div>
+                                                      <div>To Date Model: {{ toDateModel | json }}</div> -->
+            
+                                                      </div>
+                                                   </form>
+                                                   <div class="btn-area">
+                                                      <button class="link" (click)="clearAllFilter()">Clear All Filters</button>
+                                                      <div class="two-btn">
+                                                         <button type="submit" class="btn-common close "
+                                                            fdprocessedid="lhg78q" (click)="$event.stopPropagation(); myDrop.close()">Close</button>
+                                                         <button type="submit" class="save btn-common green-btn"
+                                                            fdprocessedid="3xp6zs" (click)="applyFilters()">Apply</button>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="table-wrapper table-responsive prospect-table">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="tb-head"><span>Customer Name </span> <span class="sort" (click)="toggleSort('firstName')"><img
+                                                        src="../../assets/img/sort.svg" alt="sort"></span></div>
+                                        </th>
+                                        <th>
+                                            <div class="tb-head"><span>Email Address</span> <span class="sort" (click)="toggleSort('email')"><img
+                                                        src="../../assets/img/sort.svg" alt="sort"></span></div>
+                                        </th>
+                                        <th>
+                                            <div class="tb-head"><span>Phone Number</span> <span class="sort"></span></div>
+                                        </th>
+                                        <th>
+                                            <div class="tb-head"><span>Status</span> <span class="sort" (click)="toggleSort('status')"><img
+                                                        src="../../assets/img/sort.svg" alt="sort"></span></div>
+                                        </th>
+                                        <th>
+                                            <div class="tb-head"><span>Date Created</span> <span class="sort" (click)="toggleSort('createdAt')"><img
+                                                        src="../../assets/img/sort.svg" alt="sort"></span></div>
+                                        </th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let customer of customers">
+                                        <td>
+                                            <div class="table-content"><span class="name-img"><img
+                                                        *ngIf="customer?.image?.name" src={{customer.image.name}}
+                                                        alt="item"><img *ngIf="!customer?.image?.name"
+                                                        src="../../assets/img/item.png"
+                                                        alt="item"></span>{{customer.firstName+' '+customer.lastName}}
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            {{customer.email}}
+                                        </td>
+
+                                        <td>
+                                            {{customer.phoneNumber}}
+                                        </td>
+
+                                        <td  [style.color]="customer.status != 1 ? 'red' : ''">
+                                            {{ customer.status == 1 ? 'Active' : 'blocked' }}
+                                        </td>
+
+                                        <td>
+                                            {{customer.createdAt | slice : 0:10}}
+                                        </td>
+                                        <td>
+                                            <div class="actions">
+                                                <button class="btn btn-action edit"
+                                                    (click)="openEdit(contentEdit,customer)">
+                                                    <img src="../../assets/img/edit.svg" alt="edit">
+                                                </button>
+
+                                                <button class="btn btn-action block"
+                                                    (click)="openBlock(contentBlock,customer)">
+                                                    <img src="../../assets/img/usr-block.svg" alt="block">
+                                                </button>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- pagination -->
+                    <div class="container-fluid paginations">
+                        <div class="row">
+                            <div class="pagination-iiner d-flex">
+                                <div class="rows-select">
+                                    <span class="txt">Rows per page</span>
+                                    <select name="selectRows" id="selectRows" class="form-control"
+                                        (change)="onPageSizeChange($event)">
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                </div>
+                                <div class="result-txt">
+                                    Showing data
+                                    <span *ngIf="totalItems === 0">0</span>
+                                    <span *ngIf="totalItems > 0">{{ startIndex }}</span>
+                                    to
+                                    <span *ngIf="endIndex > totalItems">{{ totalItems }}</span>
+                                    <span *ngIf="endIndex <= totalItems">{{ endIndex }}</span>
+                                    of {{ totalItems }} entries
+                                </div>
+                                <div class="page-count">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-center">
+                                            <li class="page-item">
+                                                <a class="page-link" routerLink="#" [class.disabled]="currentPage === 1"
+                                                    (click)="goToPage(currentPage - 1)" aria-label="Previous">
+                                                    <img src="../../assets/img/pagenation-prev.svg" alt="drop">
+                                                </a>
+                                            </li>
+                                            <li class="page-item" *ngFor="let page of pages"
+                                                [class.active]="page === currentPage">
+                                                <a class="page-link" style="cursor:pointer;" (click)="goToPage(page)">{{
+                                                    page }}</a>
+                                            </li>
+
+                                            <li class="page-item">
+                                                <a class="page-link" routerLink="#" aria-label="Next"
+                                                    [class.disabled]="currentPage === totalPages"
+                                                    (click)="goToPage(currentPage + 1)">
+                                                    <img src="../../assets/img/pagenation-next.svg" alt="drop">
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- pagination -->
+
+                    <!-- Edit Modal -->
+                    <ng-template #contentEdit let-modal>
+                        <div class="">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="createLeadModalLabel">Edit Customers</h5>
+                                    <button type="button" class="btn-close" (click)="modal.close()"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- {{addForm.value | json}} -->
+                                    <div class="lead-form">
+                                        <form [formGroup]="addForm">
+                                            <div class="scroll-modal-wrp">
+                                                <div class="mb-lg-3 mb-sm-0 container-fluid">
+                                                    <div class="row ">
+                                                        <div class="col-12 d-flex justify-content-center pb-5">
+                                                            <div class="round-img">
+                                                                <input type="file" id="real-file" hidden="hidden"
+                                                                   (change)="onFileSelected($event)" formControlName="image"
+                                                                   accept="image/*" />
+                                                                   <label for="real-file" class="upload-icon"
+                                                                   id="custom-button">
+                                                                   <img *ngIf="imageUrl" [src]="imageUrl" alt="Uploaded Image" style="border-radius: 50%;overflow: hidden;height: 200px;width: 200px;" />
+                                                                   <img *ngIf="!imageUrl" src="../../assets/img/add_modal_ico.png" alt="Upload Image" style="border-radius: 50%;overflow: hidden;height: 200px;width: 200px;" />
+                                                               </label>
+                                                             </div>
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div class="form-floating desig-inp">
+                                                                <input required type="text" formControlName="firstName"
+                                                                    class="form-control" [(ngModel)]="firstName"
+                                                                    id="floatingName" placeholder="Ronald">
+
+                                                                <span class="error-txt form-error"
+                                                                    style="color: red;font-size: 13px;"
+                                                                    *ngIf="addForm.get('firstName')?.dirty && addForm.get('firstName')?.hasError('required')">*First
+                                                                    Name
+                                                                    is required</span>
+
+                                                                <span class="error-txt form-error"
+                                                                    style="color: red;font-size: 13px;"
+                                                                    *ngIf="addForm.get('firstName')?.hasError && !addForm.get('firstName')?.hasError('required') && addForm.get('firstName')?.invalid">
+                                                                    *Please enter a valid name.</span>
+
+                                                                <label for="floatingInput">First Name <span
+                                                                        class="star">*</span></label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="form-floating desig-inp">
+                                                                <input required type="text" formControlName="lastName"
+                                                                    class="form-control" [(ngModel)]="lastName"
+                                                                    id="floatingName" placeholder="Ronald">
+
+                                                                <span class="error-txt form-error"
+                                                                    style="color: red;font-size: 13px;"
+                                                                    *ngIf="addForm.get('lastName')?.dirty && addForm.get('lastName')?.hasError('required')">*Last
+                                                                    Name
+                                                                    is required</span>
+
+                                                                <span class="error-txt form-error"
+                                                                    style="color: red;font-size: 13px;"
+                                                                    *ngIf="addForm.get('lastName')?.hasError && !addForm.get('lastName')?.hasError('required') && addForm.get('lastName')?.invalid">
+                                                                    *Please enter a valid name.</span>
+
+                                                                <label for="floatingInput">Last Name <span
+                                                                        class="star">*</span></label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="form-floating desig-inp">
+                                                                <input required type="text"
+                                                                    formControlName="phoneNumber" class="form-control"
+                                                                    [(ngModel)]="phoneNumber" id="floatingName"
+                                                                    placeholder="Ronald">
+
+                                                                <span class="error-txt form-error"
+                                                                    style="color: red;font-size: 13px;"
+                                                                    *ngIf="addForm.get('phoneNumber')?.hasError && !addForm.get('phoneNumber')?.hasError('required') && addForm.get('phoneNumber')?.invalid">
+                                                                    *Invalid phone number format. Please enter a valid
+                                                                    phone
+                                                                    number.</span>
+
+                                                                <span class="error-txt form-error"
+                                                                    style="color: red;font-size: 13px;"
+                                                                    *ngIf="addForm.get('phoneNumber')?.dirty && addForm.get('phoneNumber')?.hasError('required')">*Contact
+                                                                    is required</span>
+
+                                                                <label for="floatingInput">Contact<span
+                                                                        class="star">*</span></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-ftr">
+                                                <div class="two-btn">
+                                                    <button type="submit" class="btn-common close "
+                                                        data-bs-dismiss="modal"
+                                                        (click)="closeEdit(modal)">Close</button>
+                                                    <button type="submit" class="save btn-common green-btn"
+                                                        data-bs-dismiss="modal"
+                                                        (click)="editCustomers()">Save</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <!-- edit mdoal end -->
+
+                    <!-- block-modal -->
+                    <ng-template #contentBlock let-modal>
+                        <div class="">
+                            <div class="modal-content text-center">
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" (click)="modal.close()"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="profile-img mb-5"><img src="../../assets/img/usr-block.svg"
+                                            style="border-radius: 50%;overflow: hidden;height: 100px;width: 100px;"
+                                            alt="sign"></div>
+                                    <div class="popup-title">Are you sure you want to block this user?</div>
+                                    <div class="two-btn logout-btn">
+                                        <button type="submit" class="btn-common close"
+                                            (click)="modal.close()">Cancel</button>
+                                        <button type="submit" class="save btn-common green-btn" data-bs-dismiss="modal"
+                                            (click)="blockCustomer()">Confirm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <!-- block modal end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"
+    integrity="sha512-X/YkDZyjTf4wyc2Vy16YGCPHwAY8rZJY+POgokZjQB2mhIRFJCckEGc6YyX9eNsPfn0PzThEuNs+uaomE5CO6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</html>

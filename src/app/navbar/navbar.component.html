@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+        integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+</head>
+
+<body>
+    <div class="dashboard-wrp">
+        <div class="sidebar">
+            <div class="st-wrp">
+                <button class="sidebar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="logoWrp">
+                <a href="#" class="logo">
+                    <img src="../../assets/img/logo.png" alt="dashboard">
+                </a>
+            </div>
+
+            <div class="menuWrp">
+                <ul class="menu">
+                    <li class="menu-link">
+                        <a [routerLink]="'category'" [ngClass]="checkActive('/dashboard/category')?'link active':'link'">
+                            <span class="ico">
+                                <img src="../../assets/img/category-icon.svg" alt="">
+                            </span>
+                            <span class="txt">Category Management</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-link">
+                        <a [routerLink]="'store'" [ngClass]="checkActive('/dashboard/store')?'link active':'link'">
+                            <span class="ico">
+                                <img src="../../assets/img/store-mngmnt.svg" alt="prospect">
+                            </span>
+                            <span class="txt">Store Management</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-link">
+                        <a [routerLink]="'discount'" [ngClass]="checkActive('/dashboard/discount')?'link active':'link'">
+                            <span class="ico">
+                                <img src="../../assets/img/discount-mngmnt.svg" alt="workers">
+                            </span>
+                            <span class="txt">Discount Management</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-link">
+                        <a [ngClass]="checkActive('/dashboard/customers')?'link active':'link'" [routerLink]="'customers'">
+                            <span class="ico">
+                                <img src="../../assets/img/usr-mngmnt.svg" alt="usr manage">
+                            </span>
+                            <span class="txt">Customers</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="side-btm">
+                <img src="../../assets/img/sidenav-btm-img.png" alt="side nav btm img">
+            </div>
+        </div>
+
+
+        <div class="page-cont-wrp">
+            <div class="dashboard-header">
+                <header class="dashboard-header">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col-md-2">
+                            </div>
+
+                            <!-- profile list  -->
+                            <div class="col-md-10 actn-col">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item dropdown user-drop-dwn" [class.show]="isDropdownOpen"
+                                        (click)="toggleDropdown()">
+                                        <div class="usr-img"><img src={{profile.image.name}} alt="user"></div>
+                                        <a class="nav-link dropdown-toggle" role="button"
+                                            [attr.aria-expanded]="isDropdownOpen ? 'true' : 'false'">
+                                            <div class="user-detai">
+                                                <span class="user-name">
+                                                   {{profile.firstName | titlecase}}
+                                                </span>
+                                                <span class="user-position">Admin</span>
+                                             </div>
+                                        </a>
+                                        <ul class="dropdown-menu" [class.show]="isDropdownOpen"
+                                            style="position: absolute; top: 100%; left: 50; z-index: 1000;">
+
+                                            <li>
+                                                <a class="dropdown-item" [routerLink]="'profile'"
+                                                    (click)="closeDropdown($event)">
+                                                    <span class="img"><img src="../../assets/img/Profile_view.svg"
+                                                            alt="profile"></span>
+                                                    <span class="name">My Profile</span>
+                                                </a>
+                                            </li>
+                                            <li class="mob-only-items">
+                                                <hr class="dropdown-divider">
+                                            </li>
+
+                                            <li class="mob-only-items">
+                                                <a class="dropdown-item" [routerLink]="'changePassword'" (click)="closeDropdown($event)">
+                                                    <span class="ico"><img src="../../assets/img/change-password.svg"
+                                                            alt="Channels"></span>
+                                                    <span class="txt">Change Password</span>
+                                                </a>
+                                            </li>
+                                            <li class="mob-only-items">
+                                                <hr class="dropdown-divider">
+                                            </li>
+
+                                            <li class="mob-only-items">
+                                                <a class="dropdown-toggle1 dropdown-item" id="logoutDropdown"
+                                                    role="button" data-bs-toggle="modal" data-bs-target="#logoutModal"
+                                                    aria-expanded="false" (click)="closeDropdown($event)"
+                                                    (click)="openLogout(contentLogout)">
+                                                    <span class="ico"><img src="../../assets/img/Sign_out.svg"
+                                                            alt="Privacy"></span>
+                                                    <span class="txt">Logout</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- profile list end -->
+
+                        </div>
+                    </div>
+                </header>
+            </div>
+
+            <div class="page-body">
+                <router-outlet></router-outlet>
+            </div>
+
+            <!-- logout modal -->
+            <ng-template #contentLogout let-modal>
+                <div class="">
+                    <div class="modal-content text-center">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" (click)="modal.close()"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="profile-img mb-5"><img src="../../assets/img/Sign_out.svg" style="border-radius: 50%;overflow: hidden;height: 100px;width: 100px;" alt="sign">
+                            </div>
+                            <div class="popup-title">Are you sure you want to logout?</div>
+                            <div class="two-btn logout-btn">
+                                <button type="submit" class="btn-common close" (click)="modal.close()">Cancel</button>
+                                <button type="submit" class="save btn-common green-btn"
+                                    data-bs-dismiss="modal" (click)="logout(modal)">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <!-- logout modal end -->
+
+        </div>
+    </div>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"
+    integrity="sha512-X/YkDZyjTf4wyc2Vy16YGCPHwAY8rZJY+POgokZjQB2mhIRFJCckEGc6YyX9eNsPfn0PzThEuNs+uaomE5CO6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</html>

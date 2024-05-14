@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <g id="Group_70463" data-name="Group 70463" transform="translate(-900 -414)">
+    <g id="Group_70462" data-name="Group 70462">
+      <g id="Group_70460" data-name="Group 70460" transform="translate(-43 15)">
+        <g id="Group_57697" data-name="Group 57697" transform="translate(44 -3)">
+          <circle id="Ellipse_754" data-name="Ellipse 754" cx="60" cy="60" r="60" transform="translate(899 402)" fill="#ffdee2"/>
+          <circle id="Ellipse_753" data-name="Ellipse 753" cx="36" cy="36" r="36" transform="translate(923 426)" fill="#f83751"/>
+        </g>
+      </g>
+      <g id="Group_70461" data-name="Group 70461" transform="translate(5255.753 -516.25)">
+        <path id="Vector" d="M21.915,4.634c-1.874-.186-3.749-.326-5.635-.431V4.191l-.256-1.514C15.849,1.607,15.593,0,12.869,0H9.819C7.106,0,6.85,1.537,6.664,2.666l-.244,1.49c-1.083.07-2.165.14-3.248.244L.8,4.634A.871.871,0,1,0,.959,6.368l2.375-.233a92.823,92.823,0,0,1,18.418.244h.093a.882.882,0,0,0,.873-.792A.892.892,0,0,0,21.915,4.634Z" transform="translate(-4306.753 977.25)" fill="#fff"/>
+        <path id="Vector-2" data-name="Vector" d="M17.233.454A1.472,1.472,0,0,0,16.174,0H1.458A1.452,1.452,0,0,0,.4.454,1.5,1.5,0,0,0,0,1.548L.724,13.493c.128,1.77.291,3.982,4.354,3.982h7.474c4.063,0,4.226-2.2,4.354-3.982L17.629,1.56A1.509,1.509,0,0,0,17.233.454ZM10.748,11.642H6.871a.873.873,0,1,1,0-1.746h3.877a.873.873,0,1,1,0,1.746Zm.978-4.657H5.9a.873.873,0,0,1,0-1.746h5.821a.873.873,0,1,1,0,1.746Z" transform="translate(-4304.213 984.818)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

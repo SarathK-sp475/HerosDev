@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Sidebar</title>
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+      integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+   <div class="dashboard-wrp">
+      <div class="page-cont-wrp">
+         <div class="page-body">
+            <div class="container-fluid">
+               <div class="row ">
+                  <div class="profile-sec">
+                     <div class="top-head">
+                        My Profile
+                     </div>
+
+                     <!--  -->
+                     <div class="profile-inner">
+                        <div class="profile-pic">
+                           <div class="profile-img "> <img src={{profile.image.name}} alt="profile-pic">
+                           </div>
+                        </div>
+                        <div class="profile-details">
+                           <div class="profile-name pb-0">
+                              <div class="top-img">
+                                 <div class="imag-sec">
+                                    <span class="icon ">
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="9.208" height="13.08"
+                                          viewBox="0 0 9.208 13.08">
+                                          <g id="Group_70317" data-name="Group 70317"
+                                             transform="translate(-958.961 -148)">
+                                             <path id="Vector"
+                                                d="M3.107,0a3.1,3.1,0,0,0-.078,6.207.528.528,0,0,1,.144,0h.046A3.1,3.1,0,0,0,3.107,0Z"
+                                                transform="translate(960.458 148)" fill="#f83751" />
+                                             <path id="Vector-2" data-name="Vector"
+                                                d="M7.927.912a6.494,6.494,0,0,0-6.638,0A2.582,2.582,0,0,0,0,3.025a2.56,2.56,0,0,0,1.282,2.1A6.043,6.043,0,0,0,4.6,6.046a6.043,6.043,0,0,0,3.322-.922A2.58,2.58,0,0,0,9.208,3.012,2.575,2.575,0,0,0,7.927.912Z"
+                                                transform="translate(958.961 155.034)" fill="#f83751" />
+                                          </g>
+                                       </svg>
+                                    </span>
+                                    <span class="details">First name</span>
+                                 </div>
+                                 <div class="text-sec">{{profile.firstName | titlecase}}</div>
+                              </div>
+                              <div class="top-img">
+                                 <div class="imag-sec">
+                                    <span class="icon">
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="9.208" height="13.08"
+                                          viewBox="0 0 9.208 13.08">
+                                          <g id="Group_70317" data-name="Group 70317"
+                                             transform="translate(-958.961 -148)">
+                                             <path id="Vector"
+                                                d="M3.107,0a3.1,3.1,0,0,0-.078,6.207.528.528,0,0,1,.144,0h.046A3.1,3.1,0,0,0,3.107,0Z"
+                                                transform="translate(960.458 148)" fill="#f83751" />
+                                             <path id="Vector-2" data-name="Vector"
+                                                d="M7.927.912a6.494,6.494,0,0,0-6.638,0A2.582,2.582,0,0,0,0,3.025a2.56,2.56,0,0,0,1.282,2.1A6.043,6.043,0,0,0,4.6,6.046a6.043,6.043,0,0,0,3.322-.922A2.58,2.58,0,0,0,9.208,3.012,2.575,2.575,0,0,0,7.927.912Z"
+                                                transform="translate(958.961 155.034)" fill="#f83751" />
+                                          </g>
+                                       </svg>
+
+                                    </span>
+                                    <span class="details">Last name</span>
+                                 </div>
+                                 <div class="text-sec">{{profile.lastName | titlecase}}</div>
+                              </div>
+                              <div class="top-img">
+                                 <div class="imag-sec">
+                                    <span class="icon">
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="11.373" height="9.667"
+                                          viewBox="0 0 11.373 9.667">
+                                          <path id="Vector"
+                                             d="M8.53,0H2.843A2.55,2.55,0,0,0,0,2.843V6.824A2.55,2.55,0,0,0,2.843,9.667H8.53a2.55,2.55,0,0,0,2.843-2.843V2.843A2.55,2.55,0,0,0,8.53,0ZM8.8,3.463,7.017,4.885a2.2,2.2,0,0,1-2.661,0L2.576,3.463a.437.437,0,0,1-.068-.6.425.425,0,0,1,.6-.068l1.78,1.422a1.357,1.357,0,0,0,1.6,0l1.78-1.422a.42.42,0,0,1,.6.068A.431.431,0,0,1,8.8,3.463Z"
+                                             fill="#f83751" />
+                                       </svg>
+
+
+                                    </span>
+                                    <span class="details">Email ID</span>
+                                 </div>
+                                 <div class="text-sec">{{profile.email}}</div>
+                              </div>
+
+                              <div class="top-img">
+                                 <div class="imag-sec">
+                                    <span class="icon">
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="11.678" height="11.695"
+                                          viewBox="0 0 11.678 11.695">
+                                          <g id="Group_70321" data-name="Group 70321" transform="translate(-695 -354)">
+                                             <path id="Vector"
+                                                d="M5.292,7.573,4.21,8.655a.588.588,0,0,1-.825.006c-.064-.064-.129-.123-.193-.187A16.616,16.616,0,0,1,1.561,6.561,10.425,10.425,0,0,1,.415,4.567,5.021,5.021,0,0,1,0,2.655,3.025,3.025,0,0,1,.211,1.526,2.692,2.692,0,0,1,.883.55,1.713,1.713,0,0,1,2.1,0a1.1,1.1,0,0,1,.474.105.953.953,0,0,1,.392.327L4.321,2.345a2,2,0,0,1,.234.409.924.924,0,0,1,.082.357.794.794,0,0,1-.123.415,1.989,1.989,0,0,1-.327.415L3.743,4.4a.313.313,0,0,0-.094.234.531.531,0,0,0,.018.134c.018.047.035.082.047.117a4.853,4.853,0,0,0,.544.749c.263.3.544.614.848.924.058.058.123.117.181.175A.586.586,0,0,1,5.292,7.573Z"
+                                                transform="translate(695 354)" fill="#f83751" />
+                                             <path id="Vector-2" data-name="Vector"
+                                                d="M7.234,2.509a1.485,1.485,0,0,1-.088.5,1.428,1.428,0,0,1-.058.14,2.413,2.413,0,0,1-.4.6,2.636,2.636,0,0,1-.959.69c-.006,0-.012.006-.018.006a2.954,2.954,0,0,1-1.123.216,4.873,4.873,0,0,1-1.906-.427A10.271,10.271,0,0,1,.672,3.07C.444,2.9.216,2.731,0,2.55L1.912.637a3.285,3.285,0,0,0,.433.281c.029.012.064.029.105.047A.4.4,0,0,0,2.6.988a.322.322,0,0,0,.24-.1L3.281.45A1.794,1.794,0,0,1,3.7.123.779.779,0,0,1,4.117,0a.933.933,0,0,1,.357.076A2.262,2.262,0,0,1,4.883.3L6.818,1.678a.887.887,0,0,1,.322.374A1.2,1.2,0,0,1,7.234,2.509Z"
+                                                transform="translate(699.444 361.041)" fill="#f83751" />
+                                          </g>
+                                       </svg>
+
+                                    </span>
+                                    <span class="details">Phone number</span>
+                                 </div>
+                                 <div class="text-sec">{{profile.phoneNumber}}</div>
+                              </div>
+                           </div>
+                           <div class="edit-sec">
+                              <div class="btn-common edit-btn" (click)="openEdit(contentEdit, profile)">
+                                 <span class="icon">
+                                    <svg id="edit" xmlns="http://www.w3.org/2000/svg" width="14.427" height="14.427"
+                                       viewBox="0 0 14.427 14.427">
+                                       <path id="Path_9768" data-name="Path 9768"
+                                          d="M11.422,90.625a.6.6,0,0,0-.6.6v4.809a.6.6,0,0,1-.6.6H1.8a.6.6,0,0,1-.6-.6V87.62a.6.6,0,0,1,.6-.6H6.613a.6.6,0,0,0,0-1.2H1.8A1.806,1.806,0,0,0,0,87.62v8.416a1.806,1.806,0,0,0,1.8,1.8H10.22a1.806,1.806,0,0,0,1.8-1.8V91.226a.6.6,0,0,0-.6-.6Zm0,0"
+                                          transform="translate(0 -83.412)" fill="currentcolor"></path>
+                                       <path id="Path_9769" data-name="Path 9769"
+                                          d="M182.322,73.018a.3.3,0,0,0-.082.153l-.425,2.126a.3.3,0,0,0,.3.359.287.287,0,0,0,.059-.006l2.125-.425a.3.3,0,0,0,.154-.082l4.756-4.756-2.125-2.125Zm0,0"
+                                          transform="translate(-176.685 -66.353)" fill="currentcolor"></path>
+                                       <path id="Path_9770" data-name="Path 9770"
+                                          d="M394.4.941a1.5,1.5,0,0,0-2.125,0l-.832.832L393.571,3.9l.832-.832a1.5,1.5,0,0,0,0-2.125Zm0,0"
+                                          transform="translate(-380.415 -0.501)" fill="currentcolor"></path>
+                                    </svg>
+                                 </span>
+                                 <span>Edit</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!--  -->
+
+                     <!-- Edit Modal -->
+                     <ng-template #contentEdit let-modal>
+                        <div class="">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                                 <h5 class="modal-title" id="createLeadModalLabel">Edit Profile</h5>
+                                 <button type="button" class="btn-close" (click)="modal.close()"></button>
+                              </div>
+                              <div class="modal-body">
+                                 <div class="">
+                                    <form [formGroup]="addForm" class="d-flex flex-column">
+                                       <div class="">
+                                          <div class="mb-lg-3 mb-sm-0 container-fluid">
+                                             <div class="row ">
+
+                                                <div class="col-12 d-flex justify-content-center pb-5">
+                                                   <div class="round-img">
+                                                      <input required type="file" id="real-file" hidden="hidden"
+                                                         (change)="onFileSelected($event)" formControlName="image"
+                                                         accept="image/*" >
+                                                      <label for="real-file" class="upload-icon" id="custom-button">
+                                                         <img *ngIf="imageUrl" [src]="imageUrl" alt="Uploaded Image"
+                                                            style="border-radius: 50%;overflow: hidden;height: 200px;width: 200px;" />
+                                                         <img *ngIf="!imageUrl" src="../../assets/img/add_modal_ico.png"
+                                                            alt="Upload Image"
+                                                            style="border-radius: 50%;overflow: hidden;height: 200px;width: 200px;" />
+
+                                                      </label>
+                                                   </div>
+                                                </div>
+
+                                                <div class="col-md-6 mt-5">
+                                                   <div class="form-floating desig-inp">
+                                                      <input required type="text" formControlName="firstName"
+                                                         class="form-control" [(ngModel)]="firstName" id="floatingName">
+
+                                                      <span class="error-txt form-error"
+                                                         style="color: red;font-size: 13px;"
+                                                         *ngIf="addForm.get('firstName')?.dirty && addForm.get('firstName')?.hasError('required')">*First
+                                                         Name
+                                                         is required</span>
+
+                                                      <span class="error-txt form-error"
+                                                         style="color: red;font-size: 13px;"
+                                                         *ngIf="addForm.get('firstName')?.hasError && !addForm.get('firstName')?.hasError('required') && addForm.get('firstName')?.invalid">
+                                                         *Please enter a valid name.</span>
+
+                                                      <label for="floatingInput">First Name <span
+                                                            class="star">*</span></label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-6 mt-5">
+                                                   <div class="form-floating desig-inp">
+                                                      <input type="text" formControlName="lastName" class="form-control"
+                                                         [(ngModel)]="lastName" id="floatingName">
+
+                                                      <span class="error-txt form-error"
+                                                         style="color: red;font-size: 13px;"
+                                                         *ngIf="addForm.get('lastName')?.dirty && addForm.get('lastName')?.hasError('required')">*Last
+                                                         Name
+                                                         is required</span>
+
+                                                      <span class="error-txt form-error"
+                                                         style="color: red;font-size: 13px;"
+                                                         *ngIf="addForm.get('lastName')?.hasError && !addForm.get('lastName')?.hasError('required') && addForm.get('lastName')?.invalid">
+                                                         *Please enter a valid name.</span>
+
+                                                      <label for="floatingInput">Last Name <span
+                                                            class="star">*</span></label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-6 mt-5">
+                                                   <div class="form-floating desig-inp">
+                                                      <input type="text" formControlName="email" class="form-control"
+                                                         [(ngModel)]="email" id="floatingName">
+                                                      <label for="floatingInput">Email ID <span
+                                                            class="star">*</span></label>
+                                                   </div>
+                                                </div>
+
+                                                <div class="col-md-6 mt-5">
+                                                   <div class="form-floating desig-inp">
+                                                      <input required type="text" formControlName="phoneNumber"
+                                                         [(ngModel)]="phoneNumber" class="form-control"
+                                                         id="floatingName">
+
+                                                      <span class="error-txt form-error"
+                                                         style="color: red;font-size: 13px;"
+                                                         *ngIf="addForm.get('phoneNumber')?.hasError && !addForm.get('phoneNumber')?.hasError('required') && addForm.get('phoneNumber')?.invalid">
+                                                         *Invalid phone number format. Please enter a valid phone
+                                                         number.</span>
+
+                                                      <span class="error-txt form-error"
+                                                         style="color: red;font-size: 13px;"
+                                                         *ngIf="addForm.get('phoneNumber')?.dirty && addForm.get('phoneNumber')?.hasError('required')">*Contact
+                                                         is required</span>
+
+                                                      <label for="floatingInput">Contact<span
+                                                            class="star">*</span></label>
+                                                   </div>
+                                                </div>
+
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="modal-ftr">
+                                          <div class="two-btn">
+                                             <button type="submit" class="btn-common close " data-bs-dismiss="modal"
+                                                (click)="modal.close()">Close</button>
+                                             <button type="submit" class="save btn-common green-btn"
+                                                data-bs-dismiss="modal" [disabled]="addForm.invalid"
+                                                (click)="editProfile()">Save</button>
+                                          </div>
+                                       </div>
+                                    </form>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </ng-template>
+                     <!-- edit mdoal end -->
+
+
+                     <!-- <div class="profile-inner">
+                              <div class="profile-pic">
+                                 <div class="profile-img edit">
+                                    <img src="../../assets/img/Profile-pic.png" alt="profile-pic">
+                                    <label for="file-input" class="camera-icon">
+                                       <img src="../../assets/img/Camera.svg" alt="">
+                                    </label>
+                                    <input type="file" id="file-input" class="file-input" accept="image/*" onchange="previewImage(event)">
+                                 </div>
+                              </div>
+                              <div class="profile-details">
+                                 <div class="profile-name pb-0">
+                                    <form action="#">
+                                          <div class="permInputs row ">
+                                             <div class="col-md-12 col-lg-4">
+                                                <div class="form-floating desig-inp">
+                                                   <input type="text" class="form-control" id="floatingName" placeholder="Ronald">
+                                                   <label for="floatingInput">First name</label>
+                                                </div>
+                                             </div>
+                                             <div class="col-md-12 col-lg-4">
+                                                <div class="form-floating desig-inp">
+                                                   <input type="text" class="form-control" id="floatingDesc" placeholder="Cooper">
+                                                   <label for="floatingPassword">Last name</label>
+                                                </div>
+                                             </div>
+                                             <div class="col-md-12 col-lg-4">
+                                                <div class="form-floating desig-inp">
+                                                   <input type="text" class="form-control" id="floatingDesc" placeholder="ronaldcooper@mail.com">
+                                                   <label for="floatingPassword">Email ID</label>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="permInputs row ">
+                                             <div class="col-md-12 col-lg-4">
+                                                <div class="form-floating desig-inp">
+                                                   <input type="text" class="form-control" id="floatingName" placeholder="(055)353-9638">
+                                                   <label for="floatingInput">Phone number</label>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="two-btn edit-pro">
+                                             <button type="submit" class="btn-common close ">Cancel</button>
+                                             <button type="submit" class="save btn-common green-btn">Save</button>
+                                          </div>
+                                    </form>
+                                 </div>
+                              </div>
+                           </div> -->
+
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"
+   integrity="sha512-X/YkDZyjTf4wyc2Vy16YGCPHwAY8rZJY+POgokZjQB2mhIRFJCckEGc6YyX9eNsPfn0PzThEuNs+uaomE5CO6A=="
+   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</html>

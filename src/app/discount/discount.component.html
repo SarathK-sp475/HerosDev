@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount Management</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+        integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+</head>
+
+<body>
+    <div class="dashboard-wrp">
+        <div class="page-cont-wrp">
+            <div class="page-body">
+                <div class="prospect">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="top-sec d-flex">
+                                <div class="col-lg-3 col-12 ">
+                                    <div class="heading left-sec">Discount Management</div>
+                                </div>
+                                <div class=" col-lg-9 col-12">
+                                    <div class="right-sec">
+                                        <div class="search-group mx-2">
+                                            <div class="input-group">
+                                                <span class="input-group-text"><img
+                                                        src="../../assets/img/search-normal.svg" alt="sch"></span>
+                                                <input type="text" class="form-control" (input)="search($event)"
+                                                    placeholder="Search...">
+                                            </div>
+                                        </div>
+                                        <div class="filter-items">
+                                            
+                                            <div ngbDropdown class="filter dropdown mx-2" #myDrop="ngbDropdown">
+                                                <button class="btn-common dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                                   data-bs-auto-close="outside" aria-expanded="false" ngbDropdownToggle>
+                                                   <span><img src="../../assets/img/filter.svg" alt="filter"></span><span>Filter</span>
+                                                </button>
+                                                <div ngbDropdownMenu class="dropdown-menu filter-drp dropdown-menu-end">
+                                                   <h3 class="filt-title">
+                                                      Filter By
+                                                   </h3>
+            
+                                                   <form class="form">
+                                                      <div class="row inline-btm">
+                                                         <div class="col-auto">
+                                                            <label for="">Sort By :</label>
+                                                         </div>
+                                                         <div class="col-auto">
+                                                            <input type="radio" id="ascendingRadio" name="radio-group"  (change)="toggleAscDesc('name')" [checked]="sortBy === 'ascendingChecked'">
+                                                            <label for="ascendingRadio">Ascending</label>
+                                                         </div>
+                                                         <div class="col-auto">
+                                                            <input type="radio" id="descendingRadio" name="radio-group"  (change)="toggleAscDesc('name')" [checked]="sortBy === 'descendingChecked'">
+                                                            <label for="descendingRadio">Descending</label>
+                                                         </div>
+                                                      </div>
+                                                      <div class="row date-field">
+                                                         <div class="col-12">
+                                                            <label for="">Created Date :</label>
+                                                         </div>
+                                                         <div class="col-auto">
+                                                            <div class="inp-wrp clndr">
+                                                                <input type="text" class="form-control"
+                                                                placeholder="From Date"
+                                                                name="fromDateModel"
+                                                                ngbDatepicker
+                                                                #fromDate="ngbDatepicker"
+                                                                [(ngModel)]="fromDateModel">
+                                                                <span><img src="../../assets/img/Calander.svg" (click)="fromDate.toggle()" type="button"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <div class="inp-wrp clndr">
+                                                                <input type="text" class="form-control"
+                                                                name="toDateModel"
+                                                                placeholder="End Date"
+                                                                ngbDatepicker
+                                                                #toDate="ngbDatepicker"
+                                                                [(ngModel)]="toDateModel">
+                                                                <span><img src="../../assets/img/Calander.svg" (click)="toDate.toggle()" type="button"></span>
+                                                            </div>
+                                                        </div>
+            
+                                                      <!-- <div>From Date Model: {{ fromDateModel | json }}</div>
+                                                      <div>To Date Model: {{ toDateModel | json }}</div> -->
+            
+                                                      </div>
+                                                   </form>
+                                                   <div class="btn-area">
+                                                      <button class="link" (click)="clearAllFilter()">Clear All Filters</button>
+                                                      <div class="two-btn">
+                                                         <button type="submit" class="btn-common close "
+                                                            fdprocessedid="lhg78q" (click)="$event.stopPropagation(); myDrop.close()">Close</button>
+                                                         <button type="submit" class="save btn-common green-btn"
+                                                            fdprocessedid="3xp6zs" (click)="applyFilters()">Apply</button>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+
+                                            <div class="create-btn mx-2">
+                                                <button class="btn-common green-btn" type="button"
+                                                    (click)="open(content)">
+                                                    <span><img src="../../assets/img/create.svg" alt="img"></span>
+                                                    <span>Create Discount</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-wrapper table-responsive prospect-table">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="tb-head"><span>Discount Name </span> <span class="sort" (click)="toggleSort('name')"><img
+                                                        src="../../assets/img/sort.svg" alt="sort"></span></div>
+                                        </th>
+                                        <th>
+                                            <div class="tb-head"><span>Description</span> <span class="sort"></span></div>
+                                        </th>
+                                        <th>
+                                            <div class="tb-head"><span>Store</span> <span class="sort" (click)="toggleSort('storeId.name')"><img
+                                                        src="../../assets/img/sort.svg" alt="sort"></span></div>
+                                        </th>
+                                        <th>
+                                            <div class="tb-head"><span>Store Location</span><span class="sort" (click)="toggleSort('storeId.location')"><img
+                                                        src="../../assets/img/sort.svg" alt="sort"></span></div>
+                                        </th>
+                                        <th>
+                                            <div class="tb-head"><span>Category</span> <span class="sort" (click)="toggleSort('categoryId.name')"><img
+                                                        src="../../assets/img/sort.svg" alt="sort"></span></div>
+                                        </th>
+                                        <th>
+                                            <div class="tb-head"><span>Created At</span> <span class="sort" (click)="toggleSort('createdAt')"><img
+                                                        src="../../assets/img/sort.svg" alt="sort"></span></div>
+                                        </th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngIf="discounts.length > 0; else noData">
+                                        <tr *ngFor="let discount of discounts">
+                                            <td>
+                                                <div class="table-content"><span class="name-img"><img
+                                                            *ngIf="discount?.image[0]?.name"
+                                                            src={{discount.image[0].name}} alt="item"><img
+                                                            *ngIf="!discount?.image[0]?.name"
+                                                            src="../../assets/img/item.png"
+                                                            alt="item"></span>{{discount.name | titlecase | slice :
+                                                    0:15}}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                {{discount.description | titlecase | slice : 0:20}}
+                                            </td>
+                                            <td>
+                                                {{discount.storeId.name | slice : 0:15}}
+                                            </td>
+                                            <td>
+                                                {{discount.storeId.location | slice : 0:15}}
+                                            </td>
+                                            <td>
+                                                {{discount.categoryId.name | slice : 0:15}}
+                                            </td>
+                                            <td>
+                                                {{discount.createdAt | slice : 0:10}}
+                                            </td>
+                                            <td>
+                                                <div class="actions">
+                                                    <button class="btn btn-action view" type="button"
+                                                        data-bs-toggle="modal" data-bs-target="#discountViewModal"
+                                                        fdprocessedid="l61sq" (click)="openView(contentView,discount)">
+                                                        <img src="../../assets/img/eye-circle.svg" alt="eye">
+                                                    </button>
+                                                    <button class="btn btn-action edit"
+                                                        (click)="openEdit(contentEdit,discount)">
+                                                        <img src="../../assets/img/edit.svg" alt="edit">
+                                                    </button>
+                                                    <button class="btn btn-action delete" type="button"
+                                                        data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                        (click)="openDlt(contentDlt,discount)">
+                                                        <img src="../../assets/img/delete.svg" alt="delete">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                    <ng-template #noData>
+                                        <tr>
+                                            <td colspan="7" class="text-center">No data found</td>
+                                        </tr>
+                                    </ng-template>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <!-- <div class="container-fluid paginations">
+                        <div class="row">
+                            <div class="pagination-iiner d-flex">
+                                <div class="result-txt"> Showing data 1 to 100 entries </div>
+                                <div class="page-count">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-center">
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Previous">
+                                                    <img src="../../assets/img/left.svg" alt="drop">
+                                                </a>
+                                            </li>
+                                            <li class="page-item  active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Next">
+                                                    <img src="../../assets/img/right.svg" alt="drop">
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- add new discount modal -->
+                    <ng-template #content let-modal>
+                        <div class="">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addStoreModalLabel">Add Discount</h5>
+                                    <button type="button" class="btn-close" (click)="closeModal(modal)"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- {{addForm.value | json}} -->
+                                    <div class="lead-form">
+                                        <form [formGroup]="addForm" class="d-flex flex-column">
+                                            <div class="scroll-modal-wrp">
+                                                <div class="mb-lg-3 mb-sm-0 container-fluid">
+                                                    <div class="row ">
+                                                        <div class="col-md-6">
+                                                            <div class="form-floating desig-inp">
+                                                                <input required type="text" class="form-control"
+                                                                    id="floatingName" placeholder="Ronald"
+                                                                    formControlName="name" value="Get 50% off">
+
+                                                                <span class="error-txt form-error"
+                                                                    style="color: red;font-size: 13px;"
+                                                                    *ngIf="addForm.get('name')?.dirty && addForm.get('name')?.hasError('required')">*Discount
+                                                                    name is required</span>
+
+                                                                <label for="floatingInput">Discount Name<span
+                                                                        class="star">*</span></label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-floating desig-inp">
+                                                                <select required class="form-select" name="select"
+                                                                    id="selectStore" formControlName="storeId">
+                                                                    <option [value]="store._id"
+                                                                        *ngFor="let store of store">{{store.name}}
+                                                                    </option>
+                                                                </select>
+
+                                                                <span class="error-txt form-error"
+                                                                    style="color: red;font-size: 13px;"
+                                                                    *ngIf="addForm.get('storeId')?.dirty && addForm.get('storeId')?.hasError('required')">*Store
+                                                                    name
+                                                                    is required</span>
+
+                                                                <label for="floatingInput">Select Store <span
+                                                                        class="star">*</span></label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-floating desig-inp">
+                                                                <select required class="form-select" name="select"
+                                                                    id="selectCategory" formControlName="categoryId">
+                                                                    <option [value]="category._id"
+                                                                        *ngFor="let category of category">
+                                                                        {{category.name}}</option>
+                                                                </select>
+
+                                                                <span class="error-txt form-error"
+                                                                    style="color: red;font-size: 13px;"
+                                                                    *ngIf="addForm.get('categoryId')?.dirty && addForm.get('categoryId')?.hasError('required')">*Category
+                                                                    name
+                                                                    is required</span>
+
+                                                                <label for="floatingInput">Select Category <span
+                                                                        class="star">*</span></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="form-floating desc-input">
+                                                                <textarea required type="text" class="form-control"
+                                                                    formControlName="description" id="floatingDesc"
+                                                                    placeholder="Cooper"></textarea>
+
+                                                                <span class="error-txt form-error"
+                                                                    style="color: red;font-size: 13px;"
+                                                                    *ngIf="addForm.get('description')?.dirty && addForm.get('description')?.hasError('required')">*Description
+                                                                    is required</span>
+
+                                                                <label for="floatingPassword">Add Description<span
+                                                                        class="star">*</span></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-12 d-flex justify-content-center">
+                                                            <div class="upload-area">
+                                                                <div class="inner-content">
+                                                                    <input required type="file" id="real-file"
+                                                                        hidden="hidden"
+                                                                        (change)="onFileSelected($event)"
+                                                                        formControlName="image" accept="image/*" />
+
+                                                                    <label for="real-file" class="upload-icon"
+                                                                        id="custom-button">
+                                                                        <img src="../../assets/img/upload-image-new.svg"
+                                                                            alt="Upload Image">
+                                                                    </label>
+                                                                    <div class="upload-title">Drop your image here,
+                                                                        <span>Or browse</span>
+                                                                    </div>
+                                                                    <span class="info-txt">Support JPG, JPEG2000,
+                                                                        PNG</span>
+
+                                                                        <span class="error-txt form-error"
+                                                                        style="color: red;font-size: 13px;"
+                                                                        *ngIf="addForm.get('image')?.dirty && addForm.get('image')?.hasError('required')">*Image
+                                                                        is required</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="two-btn">
+                                                <button type="submit" class="btn-common close " data-bs-dismiss="modal"
+                                                    (click)="closeModal(modal)">Close</button>
+                                                <button type="submit" class="save btn-common green-btn"
+                                                    data-bs-dismiss="modal"
+                                                    (click)="addDiscount()">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <!-- add new discount modal -->
+
+
+                    <!-- edit new discount modal -->
+                    <ng-template #contentEdit let-modal>
+                        <div class="">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addStoreModalLabel">Edit Discount</h5>
+                                    <button type="button" class="btn-close" (click)="closeModal(modal)"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- {{addForm.value | json}}  -->
+                                    <div class="lead-form">
+                                        <form [formGroup]="addForm" class="d-flex flex-column">
+                                            <div class="scroll-modal-wrp">
+                                                <div class="mb-lg-3 mb-sm-0 container-fluid">
+                                                    <div class="row ">
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-floating desig-inp">
+                                                                <input required type="text" class="form-control"
+                                                                    [(ngModel)]="name" id="floatingName"
+                                                                    placeholder="Ronald" formControlName="name">
+
+                                                                <span class="error-txt form-error"
+                                                                    style="color: red;font-size: 13px;"
+                                                                    *ngIf="addForm.get('name')?.dirty && addForm.get('name')?.hasError('required')">*Discount
+                                                                    name is required</span>
+
+                                                                <label for="floatingInput">Discount Name<span
+                                                                        class="star">*</span></label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-floating desig-inp">
+                                                                <select class="form-select" name="select"
+                                                                    id="selectStore" formControlName="storeId"
+                                                                    [(ngModel)]="storeName"
+                                                                    [compareWith]="compareselect">
+                                                                    <option *ngFor="let store of store"
+                                                                        [ngValue]="store">{{store.name}}</option>
+                                                                </select>
+                                                                <label for="floatingInput">Select Store <span
+                                                                        class="star">*</span></label>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-floating desig-inp">
+                                                                <select class="form-select" name="select"
+                                                                    id="selectCategory" formControlName="categoryId"
+                                                                    [(ngModel)]="categoryName"
+                                                                    [compareWith]="compareselect">
+                                                                    <option [ngValue]="category"
+                                                                        *ngFor="let category of category">
+                                                                        {{category.name}}</option>
+                                                                </select>
+                                                                <label for="floatingInput">Select Category <span
+                                                                        class="star">*</span></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="form-floating desc-input">
+                                                                <textarea required type="text" class="form-control"
+                                                                    formControlName="description" [(ngModel)]="des"
+                                                                    id="floatingDesc" placeholder="Cooper"></textarea>
+
+                                                                <span class="error-txt form-error"
+                                                                    style="color: red;font-size: 13px;"
+                                                                    *ngIf="addForm.get('description')?.dirty && addForm.get('description')?.hasError('required')">*Description
+                                                                    is required</span>
+
+                                                                <label for="floatingPassword">Add Description<span
+                                                                        class="star">*</span></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-12 d-flex justify-content-center">
+                                                            <div class="upload-area">
+                                                                <div class="inner-content">
+                                                                    <input required type="file" id="real-file"
+                                                                        hidden="hidden"
+                                                                        (change)="onFileSelected($event)"
+                                                                        formControlName="image" accept="image/*" />
+
+                                                                    <label for="real-file" class="upload-icon"
+                                                                        id="custom-button">
+                                                                        <img src="../../assets/img/upload-image-new.svg"
+                                                                            alt="Upload Image">
+                                                                    </label>
+                                                                    <div class="upload-title">Drop your image here,
+                                                                        <span>Or browse</span>
+                                                                    </div>
+                                                                    <span class="info-txt">Support JPG, JPEG2000,
+                                                                        PNG</span>
+                                                                    <span id="custom-text" class="d-none">No file
+                                                                        chosen, yet.</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="two-btn">
+                                                <button type="submit" class="btn-common close " data-bs-dismiss="modal"
+                                                    (click)="closeModal(modal)">Close</button>
+                                                <button type="submit" class="save btn-common green-btn"
+                                                    data-bs-dismiss="modal"
+                                                    (click)="editDiscount()">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <!-- edit new discount modal -->
+
+
+                    <!-- discount view modal -->
+                    <ng-template #contentView let-modal>
+                        <div class="">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="discountViewModalLabel">Discount Info</h5>
+                                    <button type="button" class="btn-close" (click)="modal.close()"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="view-wrap-list">
+                                        <div class="col-itemes">
+                                            <div class="label-title">
+                                                <span class="icon"> <img src="../../assets/img/discount-title.svg"
+                                                        alt=""> </span>
+                                                <span class="title">Discount Titile</span>
+                                            </div>
+                                            <div class="label-value">
+                                                {{Dname}}
+                                            </div>
+                                        </div>
+                                        <div class="col-itemes">
+                                            <div class="label-title">
+                                                <span class="icon"> <img src="../../assets/img/store-locator.svg"
+                                                        alt=""> </span>
+                                                <span class="title">Store</span>
+                                            </div>
+                                            <div class="label-value">
+                                                {{DstoreName}}
+                                            </div>
+                                        </div>
+                                        <div class="col-itemes">
+                                            <div class="label-title">
+                                                <span class="icon"> <img src="../../assets/img/store-locator.svg"
+                                                        alt=""> </span>
+                                                <span class="title">Store Location</span>
+                                            </div>
+                                            <div class="label-value">
+                                                {{Dlocation}}
+                                            </div>
+                                        </div>
+                                        <div class="col-itemes">
+                                            <div class="label-title">
+                                                <span class="icon"> <img src="../../assets/img/Website.svg" alt="">
+                                                </span>
+                                                <span class="title">Category</span>
+                                            </div>
+                                            <div class="label-value">
+                                                {{DcategoryName}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="inner-title"><strong>Description</strong></div>
+                                    <div class="inner-desc pb-0">
+                                        {{Ddes}}
+                                    </div>
+                                    <div class="coupon-img">
+                                        <img class="" *ngIf="Dimg.length>0" src={{Dimg}} alt="">
+                                    </div>
+                                    <div class="no-coupon" *ngIf="Dimg.length===0">
+                                        <img class="" src="../../assets/img/no-coupon-img.svg" alt="">
+                                        <div class="no-data-txt">
+                                            No Image Found
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <div class="modal-ftr">
+                                        <div class="two-btn">
+                                            <button type="submit" class="btn-common close "
+                                                (click)="modal.close()">Close</button>
+                                            <button type="submit" class="save btn-common green-btn"
+                                            (click)="openEdit(contentEdit,discount)">Edit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <!-- discount view modal -->
+
+
+                    <!-- pagination -->
+                    <div class="container-fluid paginations">
+                        <div class="row">
+                            <div class="pagination-iiner d-flex">
+                                <div class="rows-select">
+                                    <span class="txt">Rows per page</span>
+                                    <select name="selectRows" id="selectRows" class="form-control"
+                                        (change)="onPageSizeChange($event)">
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                </div>
+                                <div class="result-txt">
+                                    Showing data
+                                    <span *ngIf="totalItems === 0">0</span>
+                                    <span *ngIf="totalItems > 0">{{ startIndex }}</span>
+                                    to
+                                    <span *ngIf="endIndex > totalItems">{{ totalItems }}</span>
+                                    <span *ngIf="endIndex <= totalItems">{{ endIndex }}</span>
+                                    of {{ totalItems }} entries
+                                </div>
+                                <div class="page-count">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-center">
+                                            <li class="page-item">
+                                                <a class="page-link" routerLink="#" [class.disabled]="currentPage === 1"
+                                                    (click)="goToPage(currentPage - 1)" aria-label="Previous">
+                                                    <img src="../../assets/img/pagenation-prev.svg" alt="drop">
+                                                </a>
+                                            </li>
+                                            <li class="page-item" *ngFor="let page of pages"
+                                                [class.active]="page === currentPage">
+                                                <a class="page-link" style="cursor:pointer;" (click)="goToPage(page)">{{
+                                                    page }}</a>
+                                            </li>
+
+                                            <li class="page-item">
+                                                <a class="page-link" routerLink="#" aria-label="Next"
+                                                    [class.disabled]="currentPage === totalPages"
+                                                    (click)="goToPage(currentPage + 1)">
+                                                    <img src="../../assets/img/pagenation-next.svg" alt="drop">
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- pagination -->
+
+
+                    <!-- delete-modal -->
+                    <ng-template #contentDlt let-modal>
+                        <div class="">
+                            <div class="modal-content text-center">
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" (click)="modal.close()"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="profile-img mb-5"><img src="../../assets/img/delete.svg"
+                                            style="border-radius: 50%;overflow: hidden;height: 100px;width: 100px;"
+                                            alt="sign"></div>
+                                    <div class="popup-title">Are you sure you want to delete this Store?</div>
+                                    <div class="two-btn logout-btn">
+                                        <button type="submit" class="btn-common close"
+                                            (click)="modal.close()">Cancel</button>
+                                        <button type="submit" class="save btn-common green-btn" data-bs-dismiss="modal"
+                                            (click)="deleteDiscount()">Confirm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <!-- delete modal end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"
+    integrity="sha512-X/YkDZyjTf4wyc2Vy16YGCPHwAY8rZJY+POgokZjQB2mhIRFJCckEGc6YyX9eNsPfn0PzThEuNs+uaomE5CO6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    // const realFileBtn = document.getElementById("real-file");
+    // const customBtn = document.getElementById("custom-button");
+    // const customTxt = document.getElementById("custom-text");
+
+    // customBtn.addEventListener("click", function () {
+    //     realFileBtn.click();
+    // });
+
+    // realFileBtn.addEventListener("change", function () {
+    //     if (realFileBtn.value) {
+    //         customTxt.innerHTML = realFileBtn.value.match(
+    //             /[\/\\]([\w\d\s\.\-\(\)]+)$/
+    //         )[1];
+    //     } else {
+    //         customTxt.innerHTML = "No file chosen, yet.";
+    //     }
+    // });
+</script>
+
+</html>

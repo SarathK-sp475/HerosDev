@@ -1,0 +1,111 @@
+@import "../../assets/scss/partials/partials";
+
+.btn{
+    &.btn-primary{
+        background-color: $colorPrimary;
+        &:focus{
+            background-color: $btnOutline;
+        }
+    }
+    &.btn-outline{
+        border: 1px solid $btnOutline;
+        color: $colorPrimary;
+        background-color: transparent;
+        font-size: 13px;
+    }
+}
+.reset-flx{
+    display: flex;
+    .btn{
+        border-radius: 16px;
+        flex: 1;
+    }
+}
+
+.error-txt {
+    color: red;
+    font-size: 11.5px;
+    line-height: 1;
+    &.form-error {
+        position: absolute;
+        top: calc(100% + 3px);
+    }
+}
+.btn-common {
+    padding: 12px 18px 11px 18px;
+    border: 1px solid $formBorder;
+    border-radius: 8px;
+    display: flex;
+    font-size: 17px;
+    line-height: 20px;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    color: $colorPrimary;
+}
+.page-cont-wrp{
+    .top-head{
+        color: $colorPrimary;
+        padding-top: 38px;
+    }
+} 
+
+// editor styles
+.quill{
+    .ql-toolbar{
+        border-color: #ffe4e4;
+        border-radius: 10px 10px 0 0;
+        .ql-picker-label{
+            &:hover{
+                color: $colorPrimary;
+            }
+        }
+    }
+    .ql-container{
+        border: 1px solid #ffe4e4;
+        border-radius: 0 0 10px 10px;
+    }
+    .ql-editor{
+        min-height: 145px;
+    }
+} 
+
+// toaster style
+
+.Toastify__toast{
+    box-shadow: 0px 2px 10px #00000029;
+    border-radius: 5px;
+    .Toastify__close-button>svg{
+        color: $colorPrimary;
+    }
+    .btn-close{
+        position: absolute;
+        right:6px;
+        width: 17px;
+        height: 17px;
+        top: 6px;
+        background-image: url(../../assets/img/toaster-close.svg);
+    }
+    .Toastify__toast-body{
+        display: flex;
+        padding: 10px;
+        .icon-wrp{
+            width: 40px;
+            height: 40px;
+            margin-right: 26px;
+            img{
+                width: 100%;
+            }
+        }
+        .title{
+            font: normal normal 600 13px/20px $font-primary;
+            color: #162A38;
+            margin-bottom: 5px;
+        }
+        .sm-txt{
+            font: normal normal normal 12px/16px $font-primary;
+            color: $txtGray;
+            margin-bottom: 0px;
+        }
+    }
+}

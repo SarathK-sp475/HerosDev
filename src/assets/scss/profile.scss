@@ -1,0 +1,382 @@
+@import "../../assets/scss/partials/partials";
+
+.profile-sec{
+    padding: 0 12px;
+    .profile-details{
+        padding-left: 60px;
+        width: calc(100% - 60px);
+        display: flex;
+        @media($sm-1281){
+            padding-left: 30px;
+            width: calc(100% - 30px);
+        }
+        @media($sm-991){
+            padding-left: 0px;
+            width: 100%;
+            flex-direction: column;
+        }
+       
+    }
+    .top-img{
+        // padding-bottom: 20px;
+        width: 30%;
+        padding-top: 30px;
+        padding-bottom: 26px;
+        @media ($sm-1679){
+            padding-top: 25px;
+            padding-bottom: 20px;
+        }
+        @media ($sm-991){
+            width: 100%;
+            padding-top:20px;
+            padding-bottom: 10px;
+        }
+        &:last-child{
+            // padding-bottom: 0px;
+        }
+    }
+    .top-head {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 30px;
+        letter-spacing: 0.1px;
+        padding-top: 26px;
+        padding-bottom: 41px;
+        @media($sm-1679){
+            font-size: 18px;
+            line-height: 1.5;
+            padding: 20px 10px;
+        }
+        @media($sm-991){
+            font-size: 16px;
+            padding: 20px 10px;
+        }
+    
+    }
+    .profile-pic,.profile-details 
+        {
+            @media($sm-991){
+                width: 100%;
+            }
+        } 
+    .profile-inner{
+        display: flex;
+        justify-content: flex-start;
+        border: 1px solid $formBorder;
+        border-radius: 15px;
+        position: relative;
+        // align-items: center;
+        padding: 60px;
+        @media($sm-1679){
+            padding: 40px;
+        }
+        .change-password-fields{
+            .desc-input{
+                .form-control{
+                    padding-right: 40px;
+                }
+                .input-group-text{
+                    background-color: transparent;
+                    border: none;
+                }
+            }
+        }
+        .permInputs{
+            @media($sm-991){
+                flex-direction: column;
+            }
+        }
+        @media($sm-1281){
+           
+            padding: 30px 20px;
+        }
+        @media($sm-991){
+            flex-direction: column;
+           padding: 30px 20px;
+        }
+        .profile-img{
+            width: 173px;
+            height: 173px;
+            border: 8px solid $formBorder;
+            border-radius: 100px;
+            @media($sm-1281){
+                width: 100px;
+                height: 100px;
+                
+            }
+            @media($sm-991){
+                width: 100px;
+                margin-bottom: 10px;
+                height: 100px;
+            }
+            .loader{
+                position: relative;
+                top: -4px;
+            }
+            img{
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+                border-radius: 100px;
+            }
+            &.edit{
+                @media ($sm-991){
+                    margin-bottom: 30px;
+                }
+            }
+        }
+        span.details {
+        font-size: 12px;
+            line-height: 17px;
+            font-weight: 300;
+            margin-left: 5px;
+            letter-spacing: 0px;
+            color: $colorPrimary;
+        }
+        span.icon{
+            color: $colorPrimary;
+        }
+        .text-sec {
+            font-size: 13px;
+            line-height: 20px;
+            padding-left: 19px;
+           
+        }
+        .edit-sec{
+            max-width: 114px;
+            width: 100%;
+            @media ($sm-991){
+                margin-top: 20px;
+            }
+        }
+        .edit-btn{
+            background-color: transparent;
+            border-radius: 9px;
+            border: 1px solid $colorPrimary;
+            color: $colorPrimary;
+            align-items: center;
+            padding-left: 23px;
+            margin-right: 0px;
+            width: 100%;
+            @media ($sm-1679){
+                padding-left: 18px;
+                padding-top: 9px;
+                padding-bottom: 9px;
+            }
+            cursor: pointer;
+            .icon{
+                margin-right: 16px;
+            }
+        }
+    }
+
+    .profile-name {
+        display: flex;
+        padding-bottom: 26px;
+        flex-wrap: wrap;
+        flex: 1;
+        @media($sm-991){
+            padding-bottom: 0px;
+            flex-direction: column;
+        }
+        form{
+            flex: 1;
+        }
+        .permInputs{
+            .form-floating{
+                margin-bottom: 56px;
+                @media ($sm-1679){
+                    margin-bottom: 45px;
+                }
+                @media ($sm-991){
+                    width: 100%;
+                    margin-bottom: 30px;
+                }
+            }
+            [class*="col"]{
+                @media ($lg-1200){
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+                }
+            }
+        }
+    }
+    .permInputs{
+        .col{
+            @media ($lg-992){
+            padding-left: 20px;
+            padding-right: 20px;
+            }
+        }
+    }
+}
+
+
+.custom-label {
+    color: #174043;
+    font-size: 16px;
+    position: absolute;
+    top: -9px;
+    background: #fff;
+    left: 20px;
+    padding: 0 5px;
+    font-weight: 600;
+
+    @media($sm-1679){
+      font-size: 14px;
+
+  }
+  @media($sm-1481){
+      font-size: 12px;
+ 
+  }
+}
+
+  
+
+  .two-btn {
+    display: flex;
+    justify-content: end;
+    margin-top: 100px;
+    button{
+        @media ($sm-1679){
+            border-radius: 12px;
+        }
+    }
+    &.chg-pwd{
+        margin-top: 64px;
+        @media($sm-991){
+            margin-top: 20px;
+            padding-top: 0px;
+        }
+        @media ($sm-479){
+            flex-direction: column-reverse;
+        }
+        button{
+            @media ($sm-479){
+                margin-right: 0px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    &.edit-pro{
+        margin-top: 26px;
+        @media($sm-991){
+            margin-top: 20px;
+            padding-top: 0px;
+        }
+        @media ($sm-479){
+            flex-direction: column-reverse;
+        }
+        button{
+            @media ($sm-479){
+                margin-right: 0px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+    &.two-btns{
+        margin-top: 50px;
+    }
+    @media($sm-991){
+        margin-top: 0px;
+        // padding-top: 0px !important;
+    }
+    button{
+        padding: 11px 42px;
+        margin-right: 10px;
+        @media ($sm-479){
+            flex: 1;
+            align-items: center;
+            justify-content: center;
+            // margin-right: 0px !important;
+            // margin-bottom: 10px;
+        }
+        &:first-child{
+            @media ($sm-479){
+                margin-bottom: 0px;
+            }
+        }
+        &:last-child{
+            margin-right: 0;
+        }
+        &.close{
+            background-color: #DEF0F2;
+            color: $colorPrimary;
+        }
+    }
+}
+.green-btn{
+    background: $colorPrimary;
+    color: #fff;
+}
+
+
+
+.profile-img{
+    position: relative;
+    width: 200px; /* Set width as needed */
+    height: 200px; /* Set height as needed */
+    border-radius: 50%; /* Make it circular */
+  }
+  
+
+  .camera-icon {
+    position: absolute;
+    bottom: -44px;
+    right: -28px;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: #fff;
+ 
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    @media ($sm-1281){
+        padding: 5px;
+        width: 40px;
+        bottom: -40px;
+        right: -20px;
+    }
+  }
+  
+  /* Hide file input */
+  .file-input {
+    display: none;
+  }
+
+
+    @media($sm-991){
+        .edit-sec.col-md-1{
+ 
+        width: 100% !important;
+    }
+  }
+
+  .profile1{
+    .profile-inner{
+        border: none;
+        position: relative;
+        justify-content: center;
+        padding: 0px;
+        padding-bottom: 40px;
+        align-items: center;
+        @media($sm-991){
+            padding: 20px 0px 10px 0px;
+        }
+        .profile-img{
+            width: 124px;
+            height: 124px;
+            position: unset;
+        }
+        .camera-icon {
+            position: absolute;
+            top: 60%;
+            left: 55%;
+        }
+
+    }
+  }
+
+

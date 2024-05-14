@@ -1,0 +1,342 @@
+@import "../../assets/scss/partials/partials";
+
+.sidebar{
+    background-color: $sidenavBg;
+    max-width: 300px;
+    transition: all ease-in-out 0.1s;
+    position: relative;
+    @media($sm-1481){
+        max-width: 266px;
+    } 
+    @media($sm-1281){
+        max-width: 220px;
+    } 
+    @media ($sm-991){
+        max-width: 72px;
+        position: fixed;
+        z-index: 9;
+        box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+    }
+    flex: 1;
+    min-height: 100vh;
+    .logoWrp{
+        display: flex;
+        align-items: center;
+        padding: 29px 36px 35px;
+        @media ($sm-1679){
+            padding: 25px 30px 30px;
+        }
+        @media ($sm-1481){
+            padding: 20px 25px 25px;
+        }
+       .logo{
+        img{
+            max-width: 100%;
+        }
+        @media ($sm-1679){
+            max-width: 100px;
+        }
+        @media ($sm-1281){
+            max-width: 120px;
+        }
+       }
+       @media ($sm-991){
+         justify-content: center;
+         padding: 10px;
+        }
+        .dt-logo{
+            @media ($sm-991){
+                display: none;
+            }
+        }
+        .mb-logo{
+            @media ($lg-992){
+                display: none;
+            }
+        }
+    }
+    .menuWrp{
+        // padding-top: 40px; 
+        // @media($sm-1199){
+        //     padding-top: 30px;
+        // }
+        .submenu{
+            font-size: 14px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            .drp-ico{
+                svg{
+                    width: 1em;
+                    height: 1em;
+                }
+                transform: rotate(270deg);
+            }
+            &:not(.collapsed){
+                .drp-ico{
+                    transform: rotate(0);
+                }  
+            }
+            ul{
+                list-style: none;
+            }
+        }
+        .submenu_items{
+            ul{
+                list-style: none;
+            }
+            .link{
+                position: relative;
+                padding-top: 6px !important;
+                padding-bottom: 6px !important;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                &:before{
+                    content: '';
+                    position: absolute;
+                    left: -18px;
+                    top: 0;
+                    bottom: 0;
+                    width: 2px;
+                   
+                }
+                &:hover{
+                    background-color: transparent !important;
+                    color: #489BA2 !important;
+                }
+                &.submenu_active{
+                    color: $colorPrimary;
+                    font-weight: 500;
+                    &:before{
+                        background-color: $colorPrimary;
+                    }
+               }
+            }
+            
+        }
+        .menu{
+            padding: 0;
+            margin: 0;
+            .menu-link{
+                padding-left: 25px;
+                padding-right: 13px;
+                @media ($sm-1679){
+                    padding-left: 20px;
+                    padding-right: 10px;
+                }
+                @media ($sm-1481){
+                    padding-left: 15px;
+                    padding-right: 10px;
+                }
+                @media ($sm-991){
+                    padding-left: 15px;
+                    
+                }
+                position: relative;
+                & + .menu-link{
+                    margin-top: 10px;
+                }
+            }
+            .link{
+                text-decoration: none;
+                color: $txtGray;
+                font-size: 16px;
+                font-weight: 500;
+                padding: 7px;
+                display: flex;
+                border-radius: 24px;
+                align-items: center;
+                 
+                @media ($sm-1679){
+                    font-size: 14px;
+                }
+                @media ($sm-1441){
+                    font-size: 13px;
+                }
+                @media ($sm-1281){
+                    font-size: 12px;
+                }
+                @media ($sm-991){
+                     padding: 4px;
+                     display: flex;
+                     align-items: center;
+                     justify-content: center;
+                     width: 30px;
+                     height: 30px;
+                }
+                .txt{
+                    @media ($sm-991){
+                        display: none;
+                    }
+                }
+
+                .ico{
+                    flex : 0 0 34px;
+                    height: 34px;
+                    margin-right: 10px;
+                    background-color: #f5e6e6;
+                    border-radius: 50%;
+                    padding: 7px;
+                    align-items: center;
+                    justify-content: center;
+                    display: flex;
+                   
+                    @media ($sm-1679){
+                        flex : 0 0 28px;
+                        height: 28px;
+                        margin-right: 6px;
+                    }
+                    @media ($sm-1441){
+                        flex : 0 0 26px;
+                        height: 26px;
+                    }
+
+                    @media ($sm-991){
+                        display: flex;
+                        align-items: center;
+                        margin: 0;
+                    }
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                    }
+                }
+                &:not(.darkmode-toggle){
+                    &.active,
+                    
+                    &:hover{
+                        .ico{
+                            background-color: #F9546A;
+                        }
+                        background-color: $colorPrimary;
+                        color: #ffffff;
+                        img{
+                            filter: brightness(0) invert(1);
+                        }
+
+                    }
+                    &.active{
+                        &:before{
+                            content: '';
+                            position: absolute;
+                            width: 2px;
+                            height: calc(50px - 10px);
+                            background-color: $colorPrimary;
+                            top: 0;
+                            left: 1px;
+                            @media ($sm-991){
+                                height: 40px;
+                            }
+                        }
+                    }
+                }
+
+                &.darkmode-toggle{
+                   .ico{
+                    display: none;
+                   } 
+                }
+                
+               .toggleSwitch{
+                margin-left: auto;
+                padding-left: 10px;
+                @media ($sm-991){
+                    padding-left: 0;
+                }
+               } 
+            }
+        }
+    }
+
+    &.show{
+        .st-wrp{
+           
+            span{
+                max-width: 18px;
+                &:nth-child(1){
+                    transform: rotate(45deg) translate(3px,4px); 
+                }
+                &:nth-child(2){
+                    opacity: 0;  
+                }
+                &:nth-child(3){
+                    transform: rotate(-45deg)  translate(3px,-4px); 
+                }
+            }
+        }
+        @media ($sm-991){
+            max-width: 266px;
+            width: 266px;
+            .logoWrp{
+                justify-content: flex-start;
+                .dt-logo{
+                    display: block;
+                    max-width: 140px;
+                    @media ($lg-992){
+                        display: none;
+                    }
+                }
+                .mb-logo{
+                    display: block;
+                    @media ($sm-991){
+                        display: none;
+                    }
+                }
+            }
+            .menuWrp{
+                .menu{
+                    .link{
+                        width: unset;
+                        justify-content: flex-start;
+                        padding: 4px 16px;
+                          .txt{
+                            display: block;
+                            padding-left: 10px;
+                        }
+                    } // link
+                } 
+            } // menu wrp
+             
+        }// upto 991
+    } // show 
+    .side-btm{
+        width: 100%;
+        height: auto;
+        position: absolute;
+        bottom: 0px;
+        img{
+            max-width: 100%;
+        }
+        @media ($sm-991){
+            display: none;
+        }
+    }
+}
+
+.st-wrp{
+    // display: none;
+    @media ($lg-992){
+        display: none;
+    }
+    position: absolute;
+    left: calc(100% + 15px);
+    top: 5px;
+    .sidebar-toggle{
+        padding: 5px;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none !important;
+        padding-top: 0px;
+        span{
+            width: 100%;
+            border-bottom: 2px solid $colorPrimary;
+            display: block;
+            margin-top: 3px;
+            margin-bottom: 3px;
+        }
+        &.side-open{
+            
+        }
+    }
+}
