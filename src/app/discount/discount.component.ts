@@ -295,6 +295,9 @@ closeModal(modalService:NgbModalRef) {
 
 
   //Filtering the data using toggledown
+  isRadioSelected: boolean = false;
+  isDateSelected: boolean = false;
+
   sortBy: string  = '';
   fromDateModel: NgbDateStruct | null = null;
   toDateModel: NgbDateStruct | null = null;
@@ -302,6 +305,7 @@ closeModal(modalService:NgbModalRef) {
   toggleAscDesc(sortBy: string) {
     this.sortOrder = this.sortBy === sortBy ? -this.sortOrder : this.sortOrder;
     this.sortBy = sortBy;
+    this.isRadioSelected = true;
   }
 
   applyFilters() {
@@ -325,6 +329,10 @@ closeModal(modalService:NgbModalRef) {
     return `${year}-${month}-${day}`;
   }
 
+  onDateSelect() {
+    this.isDateSelected = true;
+  }
+
   ascendingChecked: boolean = false;
   descendingChecked: boolean = false;
   clearAllFilter() {
@@ -332,6 +340,9 @@ closeModal(modalService:NgbModalRef) {
     this.toDateModel = null;
     this.ascendingChecked = false;
     this.descendingChecked = false;
+
+    this.isDateSelected = false;
+    this.isRadioSelected = false;
 
     // Reset radio buttons
     const ascendingRadio = document.getElementById('ascendingRadio') as HTMLInputElement;

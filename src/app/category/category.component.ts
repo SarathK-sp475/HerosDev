@@ -270,13 +270,17 @@ export class CategoryComponent implements OnInit {
 
 
   //Filtering the data using toggledown
-  sortBy: string  = '';
+  isRadioSelected: boolean = false;
+  isDateSelected: boolean = false;
+
+  sortBy: string = '';
   fromDateModel: NgbDateStruct | null = null;
   toDateModel: NgbDateStruct | null = null;
 
   toggleAscDesc(sortBy: string) {
     this.sortOrder = this.sortBy === sortBy ? -this.sortOrder : this.sortOrder;
     this.sortBy = sortBy;
+    this.isRadioSelected = true;
   }
 
   applyFilters() {
@@ -284,12 +288,12 @@ export class CategoryComponent implements OnInit {
   }
 
   updateData() {
-  const fromDate = this.fromDateModel ? this.formatDate(this.fromDateModel) : '';
-  const toDate = this.toDateModel ? this.formatDate(this.toDateModel) : '';
+    const fromDate = this.fromDateModel ? this.formatDate(this.fromDateModel) : '';
+    const toDate = this.toDateModel ? this.formatDate(this.toDateModel) : '';
     this.categoryService.getCategoryFilterDate(this.currentPage, this.pageSize, this.sortOrder, this.sortBy, fromDate, toDate)
-    .subscribe((data) => {
-      this.category = data.data.data; // Update category data
-    });
+      .subscribe((data) => {
+        this.category = data.data.data; // Update category data
+      });
   }
 
   private formatDate(date: NgbDateStruct | null): string {
@@ -300,6 +304,10 @@ export class CategoryComponent implements OnInit {
     return `${year}-${month}-${day}`;
   }
 
+  onDateSelect() {
+    this.isDateSelected = true;
+  }
+
   ascendingChecked: boolean = false;
   descendingChecked: boolean = false;
   clearAllFilter() {
@@ -308,13 +316,16 @@ export class CategoryComponent implements OnInit {
     this.ascendingChecked = false;
     this.descendingChecked = false;
 
+    this.isDateSelected = false;
+    this.isRadioSelected = false;
+
     // Reset radio buttons
     const ascendingRadio = document.getElementById('ascendingRadio') as HTMLInputElement;
     const descendingRadio = document.getElementById('descendingRadio') as HTMLInputElement;
 
     if (ascendingRadio && descendingRadio) {
-        ascendingRadio.checked = false;
-        descendingRadio.checked = false;
+      ascendingRadio.checked = false;
+      descendingRadio.checked = false;
     }
 
     this.categoryService.getCategory(this.currentPage, this.pageSize).subscribe((data) => {

@@ -16,7 +16,7 @@ export class StoreService {
     return this.http.get<any>(`${this.config.apiEndPoint}/store?page=${currentPage}&limit=${pageSize}&sortOrder=${sortOrder}&sortBy=${sortBy}`)
   }
 
-  getStoreFilterDate(currentPage: number, pageSize: number, sortOrder: number = 1, sortBy: string = 'name', fromDate: string , toDate: string ) {
+  getStoreFilterDate(currentPage: number, pageSize: number, sortOrder: number = -1, sortBy: string = 'name', fromDate: string , toDate: string ) {
     return this.http.get<any>(`${this.config.apiEndPoint}/store?page=${currentPage}&limit=${pageSize}&sortOrder=${sortOrder}&sortBy=${sortBy}&fromDate=${fromDate}&toDate=${toDate}`);
   }
 

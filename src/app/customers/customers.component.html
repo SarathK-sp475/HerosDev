@@ -84,7 +84,7 @@
                                                                 name="fromDateModel"
                                                                 ngbDatepicker
                                                                 #fromDate="ngbDatepicker"
-                                                                [(ngModel)]="fromDateModel">
+                                                                [(ngModel)]="fromDateModel" (ngModelChange)="onDateSelect()">
                                                                 <span><img src="../../assets/img/Calander.svg" (click)="fromDate.toggle()" type="button"></span>
                                                             </div>
                                                         </div>
@@ -95,7 +95,7 @@
                                                                 placeholder="End Date"
                                                                 ngbDatepicker
                                                                 #toDate="ngbDatepicker"
-                                                                [(ngModel)]="toDateModel">
+                                                                [(ngModel)]="toDateModel" (ngModelChange)="onDateSelect()">
                                                                 <span><img src="../../assets/img/Calander.svg" (click)="toDate.toggle()" type="button"></span>
                                                             </div>
                                                         </div>
@@ -106,12 +106,12 @@
                                                       </div>
                                                    </form>
                                                    <div class="btn-area">
-                                                      <button class="link" (click)="clearAllFilter()">Clear All Filters</button>
+                                                      <button class="link" [disabled]="!isRadioSelected" [disabled]="!isDateSelected" (click)="clearAllFilter()">Clear All Filters</button>
                                                       <div class="two-btn">
                                                          <button type="submit" class="btn-common close "
                                                             fdprocessedid="lhg78q" (click)="$event.stopPropagation(); myDrop.close()">Close</button>
                                                          <button type="submit" class="save btn-common green-btn"
-                                                            fdprocessedid="3xp6zs" (click)="applyFilters()">Apply</button>
+                                                            fdprocessedid="3xp6zs" [disabled]="!isRadioSelected" [disabled]="!isDateSelected" (click)="applyFilters()">Apply</button>
                                                       </div>
                                                    </div>
                                                 </div>

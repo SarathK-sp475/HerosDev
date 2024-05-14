@@ -26,7 +26,7 @@ export class StoreComponent implements OnInit {
 
   addForm !: FormGroup
   imageUrl: string | ArrayBuffer | null = null;
-  File:File | null=null;
+  File: File | null = null;
 
   constructor(private storeService: StoreService, private fb: FormBuilder, private toastr: ToastrService) { }
 
@@ -47,7 +47,7 @@ export class StoreComponent implements OnInit {
   stores = undefined;
   openView(contentView: TemplateRef<any>, stores: any) {
     this.modalService.open(contentView, { size: 'lg' })
-   
+
     this.storesname = stores.name
     this.storeslocation = stores.location
     this.storesnumber = stores.contactNumber
@@ -58,7 +58,7 @@ export class StoreComponent implements OnInit {
     }
     console.log(stores)
     this.stores = stores;
-   
+
 
   }//view modal
 
@@ -71,7 +71,7 @@ export class StoreComponent implements OnInit {
   }//
 
   //reseting and closing all modals
-  closeModalAdd(modalService:  NgbModalRef){
+  closeModalAdd(modalService: NgbModalRef) {
     modalService.close();
     this.addForm.reset();
     this.imageUrl = null;
@@ -83,11 +83,11 @@ export class StoreComponent implements OnInit {
     this.str_id = store._id
   }// dlete
 
-  name=''
-  location=''
-  number=''
-  website=''
-  descript=''
+  name = ''
+  location = ''
+  number = ''
+  website = ''
+  descript = ''
   //for opening edit modal and getting the data inside input
   openEdit(contentEdit: TemplateRef<any>, store: any) {
     this.modalService.open(contentEdit, { size: 'lg' })
@@ -148,7 +148,7 @@ export class StoreComponent implements OnInit {
   //Add
   addStore() {
 
-    if(this.addForm.invalid){
+    if (this.addForm.invalid) {
       this.addForm.get('name')?.markAsDirty();
       this.addForm.get('description')?.markAsDirty();
       this.addForm.get('location')?.markAsDirty();
@@ -157,7 +157,7 @@ export class StoreComponent implements OnInit {
       return;
     }
 
-    if(this.addForm.get('website')?.value == null){
+    if (this.addForm.get('website')?.value == null) {
       this.addForm.get('website')?.setValue('');
     }
 
@@ -212,7 +212,7 @@ export class StoreComponent implements OnInit {
   //edit
   editStore() {
 
-    if(this.addForm.invalid){
+    if (this.addForm.invalid) {
       this.addForm.get('name')?.markAsDirty();
       this.addForm.get('description')?.markAsDirty();
       this.addForm.get('location')?.markAsDirty();
@@ -240,7 +240,7 @@ export class StoreComponent implements OnInit {
           location: '',
           website: '',
           description: '',
-          image:''
+          image: ''
         });
         this.imageUrl = null;
         this.File = null;
@@ -254,8 +254,8 @@ export class StoreComponent implements OnInit {
   }//edit
 
 
-   //pagination
-   onPageSizeChange(event: any): void {
+  //pagination
+  onPageSizeChange(event: any): void {
     this.pageSize = +event.target.value;
     this.currentPage = 1; // Reset to the first page when changing page size
     this.getStore();
@@ -291,62 +291,73 @@ export class StoreComponent implements OnInit {
   }// sorting
 
 
-    //Filtering the data using toggledown
-    sortBy: string  = 'name';
-    fromDateModel: NgbDateStruct | null = null;
-    toDateModel: NgbDateStruct | null = null;
-  
-    toggleAscDesc(sortBy: string) {
-      this.sortOrder = this.sortBy === sortBy ? this.sortOrder : -this.sortOrder;
-      this.sortBy = sortBy;
-    }
-  
-    applyFilters() {
-      this.updateData();
-    }
-  
-    updateData() {
+  //Filtering the data using toggledown
+  isRadioSelected: boolean = false;
+  isDateSelected: boolean = false;
+
+  sortBy: string = '';
+  fromDateModel: NgbDateStruct | null = null;
+  toDateModel: NgbDateStruct | null = null;
+
+  toggleAscDesc(sortBy: string) {
+    this.sortOrder = this.sortBy === sortBy ? -this.sortOrder : this.sortOrder;
+    this.sortBy = sortBy;
+    this.isRadioSelected = true;
+  }
+
+  applyFilters() {
+    this.updateData();
+  }
+
+  updateData() {
     const fromDate = this.fromDateModel ? this.formatDate(this.fromDateModel) : '';
     const toDate = this.toDateModel ? this.formatDate(this.toDateModel) : '';
-      this.storeService.getStoreFilterDate(this.currentPage, this.pageSize, this.sortOrder, this.sortBy, fromDate, toDate)
+    this.storeService.getStoreFilterDate(this.currentPage, this.pageSize, this.sortOrder, this.sortBy, fromDate, toDate)
       .subscribe((data) => {
         this.store = data.data; // Update category data
       });
+  }
+
+  private formatDate(date: NgbDateStruct | null): string {
+    if (!date) return '';
+    const year = date.year;
+    const month = ('0' + date.month).slice(-2);
+    const day = ('0' + date.day).slice(-2);
+    return `${year}-${month}-${day}`;
+  }
+
+  onDateSelect() {
+    this.isDateSelected = true;
+  }
+
+  ascendingChecked: boolean = false;
+  descendingChecked: boolean = false;
+  clearAllFilter() {
+    this.fromDateModel = null;
+    this.toDateModel = null;
+    this.ascendingChecked = false;
+    this.descendingChecked = false;
+
+    this.isDateSelected = false;
+    this.isRadioSelected = false;
+
+    //Reset radio buttons
+    const ascendingRadio = document.getElementById('ascendingRadio') as HTMLInputElement;
+    const descendingRadio = document.getElementById('descendingRadio') as HTMLInputElement;
+
+    if (ascendingRadio && descendingRadio) {
+      ascendingRadio.checked = false;
+      descendingRadio.checked = false;
     }
-  
-    private formatDate(date: NgbDateStruct | null): string {
-      if (!date) return '';
-      const year = date.year;
-      const month = ('0' + date.month).slice(-2);
-      const day = ('0' + date.day).slice(-2);
-      return `${year}-${month}-${day}`;
-    }
-  
-    ascendingChecked: boolean = false;
-    descendingChecked: boolean = false;
-    clearAllFilter() {
-      this.fromDateModel = null;
-      this.toDateModel = null;
-      this.ascendingChecked = false;
-      this.descendingChecked = false;
-  
-      //Reset radio buttons
-      const ascendingRadio = document.getElementById('ascendingRadio') as HTMLInputElement;
-      const descendingRadio = document.getElementById('descendingRadio') as HTMLInputElement;
-  
-      if (ascendingRadio && descendingRadio) {
-          ascendingRadio.checked = false;
-          descendingRadio.checked = false;
-      }
-  
-      this.storeService.getStore(this.currentPage, this.pageSize).subscribe((data) => {
-        this.store = data.data;
-        //this.imageUrl = data.data.data.image.name
-        this.totalItems = data.totalCount; //pagination
-        this.updatePagination(); //pagination
-        this.calculateIndexes();
-      });
-    } //Filtering end
+
+    this.storeService.getStore(this.currentPage, this.pageSize).subscribe((data) => {
+      this.store = data.data;
+      //this.imageUrl = data.data.data.image.name
+      this.totalItems = data.totalCount; //pagination
+      this.updatePagination(); //pagination
+      this.calculateIndexes();
+    });
+  } //Filtering end
 
 
 }
