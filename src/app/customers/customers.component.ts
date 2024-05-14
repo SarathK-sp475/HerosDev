@@ -261,11 +261,15 @@ export class CustomersComponent implements OnInit {
 
   ascendingChecked: boolean = false;
   descendingChecked: boolean = false;
+  status1checked: boolean = false;
+  status2checked: boolean = false;
   clearAllFilter() {
     this.fromDateModel = null;
     this.toDateModel = null;
     this.ascendingChecked = false;
     this.descendingChecked = false;
+    this.status1checked = false;
+    this.status2checked = false;
 
     this.isDateSelected = false;
     this.isRadioSelected = false;
@@ -276,7 +280,7 @@ export class CustomersComponent implements OnInit {
     const statusRadio1 = document.getElementById('statusRadio1') as HTMLInputElement;
     const statusRadio2 = document.getElementById('statusRadio2') as HTMLInputElement;
 
-    if (ascendingRadio && descendingRadio) {
+    if (ascendingRadio && descendingRadio && statusRadio1 && statusRadio2) {
       ascendingRadio.checked = false;
       descendingRadio.checked = false;
       statusRadio1.checked = false;
