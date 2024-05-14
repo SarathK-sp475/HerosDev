@@ -299,8 +299,8 @@ export class StoreComponent implements OnInit {
   fromDateModel: NgbDateStruct | null = null;
   toDateModel: NgbDateStruct | null = null;
 
-  toggleAscDesc(sortBy: string) {
-    this.sortOrder = this.sortBy === sortBy ? -this.sortOrder : this.sortOrder;
+  toggleAscDesc(sortBy: string, sortOrder: number) {
+    this.sortOrder = sortOrder;
     this.sortBy = sortBy;
     this.isRadioSelected = true;
   }

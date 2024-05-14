@@ -221,9 +221,9 @@ export class CustomersComponent implements OnInit {
   fromDateModel: NgbDateStruct | null = null;
   toDateModel: NgbDateStruct | null = null;
 
-  toggleAscDesc(name: string) {
-    this.sortOrder = this.sortBy === name ? -this.sortOrder : this.sortOrder;
-    this.sortBy = name;
+  toggleAscDesc(sortBy: string, sortOrder: number) {
+    this.sortOrder = sortOrder;
+    this.sortBy = sortBy;
     this.isRadioSelected = true;
   }
 

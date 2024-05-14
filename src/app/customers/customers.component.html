@@ -52,11 +52,11 @@
                                                             <label for="">Sort By :</label>
                                                          </div>
                                                          <div class="col-auto">
-                                                            <input type="radio" id="ascendingRadio" name="radio-group1"  (change)="toggleAscDesc('firstName')" [checked]="sortBy === 'ascendingChecked'">
+                                                            <input type="radio" id="ascendingRadio" name="radio-group1"  (change)="toggleAscDesc('firstName', 1)" [checked]="sortBy === 'ascendingChecked'">
                                                             <label for="ascendingRadio">Ascending</label>
                                                          </div>
                                                          <div class="col-auto">
-                                                            <input type="radio" id="descendingRadio" name="radio-group1"  (change)="toggleAscDesc('firstName')" [checked]="sortBy === 'descendingChecked'">
+                                                            <input type="radio" id="descendingRadio" name="radio-group1"  (change)="toggleAscDesc('firstName', -1)" [checked]="sortBy === 'descendingChecked'">
                                                             <label for="descendingRadio">Descending</label>
                                                          </div>
                                                       </div>
