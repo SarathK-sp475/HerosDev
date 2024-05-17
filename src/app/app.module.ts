@@ -19,6 +19,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { JsonPipe } from '@angular/common';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { JsonPipe } from '@angular/common';
     NavbarComponent,
     ProfileComponent,
     ChangepasswordComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,

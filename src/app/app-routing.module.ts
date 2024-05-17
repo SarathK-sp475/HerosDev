@@ -9,10 +9,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { loginGuard } from './guards/login.guard';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'forgotPassword', component: ForgotPasswordComponent },
 
   { path: 'dashboard', canActivate: [loginGuard], component: NavbarComponent, children: [
       { path: '', redirectTo: 'category', pathMatch: 'full' }, // Redirect to category by default

@@ -29,6 +29,7 @@
                 </div>
             </div>
         </div>
+
         <div class="inner-blks">
             <div class="form-area login">
                 <div class="logo">
@@ -72,7 +73,7 @@
                                 alt="" (click)="togglePassword()"></button>
                     </div>
 
-                    <a href="#" class="forgotpw">Forgot Password ?</a>
+                    <a class="forgotpw" [routerLink]="'/forgotPassword'">Forgot Password ?</a>
 
                     <div class="inp-wrp">
                         <button class="btn btn-primary btn-login" [disabled]="loginForm.invalid" (click)="logging()">
@@ -91,6 +92,7 @@
                 </form>
             </div>
         </div>
+
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"
         integrity="sha512-X/YkDZyjTf4wyc2Vy16YGCPHwAY8rZJY+POgokZjQB2mhIRFJCckEGc6YyX9eNsPfn0PzThEuNs+uaomE5CO6A=="
